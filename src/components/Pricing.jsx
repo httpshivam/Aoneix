@@ -82,26 +82,7 @@ export default function Pricing({ onSelectPlan }) {
   return (
     <section id="pricing" className="py-24 bg-[#faf7f2] relative overflow-hidden">
       
-      {/* Decorative Watermark Curved Arrows (Matching SS 4 background) */}
-      <div 
-        className="absolute -left-20 top-1/2 -translate-y-1/2 w-96 h-96 pointer-events-none opacity-20 text-[#c8bfb0]" 
-        aria-hidden="true"
-      >
-        <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="12" className="w-full h-full">
-          <path d="M 40,160 A 70,70 0 1,1 160,100" strokeLinecap="round" />
-          <path d="M 140,80 L 160,100 L 140,120" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
 
-      <div 
-        className="absolute -right-20 top-1/2 -translate-y-1/2 w-96 h-96 pointer-events-none opacity-20 text-[#c8bfb0]" 
-        aria-hidden="true"
-      >
-        <svg viewBox="0 0 200 200" fill="none" stroke="currentColor" strokeWidth="12" className="w-full h-full">
-          <path d="M 160,40 A 70,70 0 1,1 40,100" strokeLinecap="round" />
-          <path d="M 60,120 L 40,100 L 60,80" strokeLinecap="round" strokeLinejoin="round" />
-        </svg>
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
         

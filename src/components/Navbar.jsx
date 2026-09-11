@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import AoneixLogo from './AoneixLogo';
-import { User, Menu, X, ArrowRight, Sparkles } from 'lucide-react';
+import { User, Menu, X, ArrowRight, Sparkles, LogIn } from 'lucide-react';
 
 export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -88,13 +88,17 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
           ))}
         </nav>
 
-        {/* Action Button */}
-        <div className="hidden md:flex items-center space-x-4">
+        {/* Action Button: 3D Layered Sign-In Button */}
+        <div className="hidden md:flex items-center">
           <button 
             onClick={onOpenAuthModal}
-            className="bg-[#00c25a] hover:bg-[#00ab4f] text-gray-900 font-semibold text-sm px-6 py-2.5 rounded-lg transition-all shadow-sm hover:shadow-md active:scale-95"
+            className="btn-3d-signin group"
+            aria-label="Sign in"
           >
-            Sign in
+            <div className="btn-3d-signin-core">
+              <LogIn className="w-4 h-4 text-[#042e18] stroke-[2.2] transition-transform duration-200 group-hover:translate-x-0.5" />
+              <span>Sign in</span>
+            </div>
           </button>
         </div>
 
@@ -125,15 +129,19 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
               </a>
             ))}
           </div>
-          <div className="pt-3 border-t border-gray-100 flex flex-col gap-3">
+          <div className="pt-3 border-t border-gray-100 flex flex-col items-center">
             <button 
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenAuthModal();
               }}
-              className="w-full bg-[#00c25a] text-gray-900 font-semibold text-center py-2.5 rounded-lg shadow-sm"
+              className="btn-3d-signin w-full group"
+              aria-label="Sign in"
             >
-              Sign in
+              <div className="btn-3d-signin-core w-full justify-center">
+                <LogIn className="w-4 h-4 text-[#042e18] stroke-[2.2] transition-transform duration-200 group-hover:translate-x-0.5" />
+                <span>Sign in</span>
+              </div>
             </button>
           </div>
         </div>

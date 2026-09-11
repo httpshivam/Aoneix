@@ -216,18 +216,11 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
   };
 
   return (
-    <section className="relative overflow-hidden pt-8 pb-20 lg:pt-14 lg:pb-28 bg-gradient-to-b from-[#e8fbf0]/60 via-[#f8fdf9]/30 to-white">
-      {/* Background Soft Emerald Radial Blur Glow */}
-      <div
-        className="absolute top-0 right-1/4 w-[650px] h-[650px] bg-gradient-to-br from-[#00c25a]/15 via-[#86efac]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute -top-20 left-10 w-[450px] h-[450px] bg-[#dcfce7]/40 rounded-full blur-3xl pointer-events-none -z-10"
-        aria-hidden="true"
-      />
+    <section className="relative overflow-hidden pt-8 pb-20 lg:pt-14 lg:pb-28 bg-white">
+      {/* Animated Fluted Linear Gradient Background (moving left to right with opacity 0 at bottom) */}
+      <div className="hero-fluted-gradient" aria-hidden="true" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
         {/* Top Two Column Layout: Left Copy & Right Provision Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start mb-14">
 
@@ -320,21 +313,21 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
           {/* Floating Badge 1: Instant SDK Handshake (Top Left) */}
           <button
             onClick={() => onBadgeClick && onBadgeClick('Instant SDK Handshake', 'Latency < 45ms direct to Meta WhatsApp endpoints')}
-            className="animate-float-1 hidden md:flex absolute -top-6 -left-8 lg:-left-4 z-20 items-center gap-2.5 bg-[#4ed181] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 backdrop-blur-sm border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+            className="animate-float-1 hidden md:flex absolute -top-6 -left-8 lg:-left-4 z-20 w-[228px] h-11 items-center justify-center gap-2.5 bg-[#4ed181] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 backdrop-blur-sm border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
           >
-            <div className="p-1 bg-white/20 rounded-md">
+            <div className="p-1 bg-white/20 rounded-md shrink-0">
               <ExternalLink className="w-4 h-4" />
             </div>
-            <span>Instant SDK Handshake</span>
+            <span className="whitespace-nowrap">Instant SDK Handshake</span>
           </button>
 
           {/* Floating Badge 2: Automated Sync (Top Right of Phone) */}
           <button
             onClick={() => onBadgeClick && onBadgeClick('Automated Sync', 'Full bi-directional WhatsApp Business webhook synchronization')}
-            className="animate-float-2 hidden md:flex absolute top-4 right-10 lg:right-24 z-20 items-center gap-2.5 bg-[#173827] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-black/10 border border-emerald-900/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+            className="animate-float-2 hidden md:flex absolute top-4 right-10 lg:right-24 z-20 w-[228px] h-11 items-center justify-center gap-2.5 bg-[#173827] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-black/10 border border-emerald-900/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
           >
-            <span>Automated Sync</span>
-            <div className="p-1 bg-white/10 rounded-md">
+            <span className="whitespace-nowrap">Automated Sync</span>
+            <div className="p-1 bg-white/10 rounded-md shrink-0">
               <ClipboardCheck className="w-4 h-4 text-[#86efac]" />
             </div>
           </button>
@@ -343,13 +336,13 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
           <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 z-20">
             <button
               onClick={() => onBadgeClick && onBadgeClick('Vault-Grade Security', 'Zero cross-tenant leaks with isolated encryption keys')}
-              className="animate-float-3 flex items-center gap-2.5 bg-[#3eb76f] text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-xl shadow-emerald-600/25 border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+              className="animate-float-3 flex w-[228px] h-11 items-center justify-center gap-2.5 bg-[#3eb76f] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-xl shadow-emerald-600/25 border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
             >
-              <div className="flex items-center -space-x-1">
+              <div className="flex items-center -space-x-1 shrink-0">
                 <Shield className="w-4 h-4 text-white fill-white/30" />
                 <Settings className="w-3.5 h-3.5 text-white animate-spin" style={{ animationDuration: '8s' }} />
               </div>
-              <span>Vault-Grade Security</span>
+              <span className="whitespace-nowrap">Vault-Grade Security</span>
             </button>
           </div>
 

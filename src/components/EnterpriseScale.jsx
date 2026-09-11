@@ -57,22 +57,19 @@ export default function EnterpriseScale({ onSelectFeature }) {
   ];
 
   return (
-    <section id="features" className="py-20 bg-[#eaf8ef]/50 border-y border-emerald-100 relative overflow-hidden">
-      
-      {/* Background delicate decorative grid */}
-      <div 
-        className="absolute inset-0 opacity-15 pointer-events-none"
-        style={{
-          backgroundImage: `linear-gradient(#075e37 1px, transparent 1px), linear-gradient(to right, #075e37 1px, transparent 1px)`,
-          backgroundSize: '48px 48px'
-        }}
-      />
+    <section id="features" className="py-20 bg-[#eaf8ef]/50 relative overflow-hidden">
+
+      {/* Animated Background Line Grid with Motion Blur & Decreased Opacity */}
+      <div className="enterprise-grid-container" aria-hidden="true">
+        <div className="enterprise-grid-animated" />
+        <div className="enterprise-grid-motion-blur" />
+      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-        
+
         {/* Section Header with Pill Badge (Matching SS 2) */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          
+
           {/* Engineered [Badge] For Enterprise Scale */}
           <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 mb-4">
             <h2 className="text-3xl sm:text-5xl font-bold text-gray-950 tracking-tight">
@@ -82,9 +79,9 @@ export default function EnterpriseScale({ onSelectFeature }) {
             {/* Centered Graphic Badge */}
             <div className="inline-flex items-center gap-2 bg-[#1b7a43] text-white px-3 sm:px-4 py-1.5 rounded-full shadow-md border-2 border-[#86efac]">
               <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full overflow-hidden bg-white shrink-0">
-                <img 
-                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80" 
-                  alt="Enterprise WhatsApp Specialist" 
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=120&q=80"
+                  alt="Enterprise WhatsApp Specialist"
                   className="w-full h-full object-cover"
                   onError={(e) => {
                     e.target.style.display = 'none';
@@ -121,11 +118,10 @@ export default function EnterpriseScale({ onSelectFeature }) {
                   key={col.id}
                   onClick={() => setActiveIndex(index)}
                   onMouseEnter={() => setActiveIndex(index)}
-                  className={`relative cursor-pointer transition-all duration-300 ease-out select-none flex flex-col justify-between ${
-                    isActive 
-                      ? 'flex-[3.5] bg-[#0a5c36] text-white p-8 lg:p-10 shadow-inner' 
+                  className={`relative cursor-pointer transition-all duration-300 ease-out select-none flex flex-col justify-between ${isActive
+                      ? 'flex-[3.5] bg-[#0a5c36] text-white p-8 lg:p-10 shadow-inner'
                       : 'flex-1 bg-[#d8f5e1] hover:bg-[#c6efd3] text-gray-950 p-4 items-center'
-                  }`}
+                    }`}
                 >
                   {isActive ? (
                     /* Active Expanded Column Content (Matching SS 2 Active Card) */
@@ -161,7 +157,7 @@ export default function EnterpriseScale({ onSelectFeature }) {
                         </div>
 
                         {/* White Arrow Icon Button (Matching SS 2) */}
-                        <button 
+                        <button
                           onClick={(e) => {
                             e.stopPropagation();
                             if (onSelectFeature) onSelectFeature(col);
@@ -207,14 +203,12 @@ export default function EnterpriseScale({ onSelectFeature }) {
                 <div key={col.id} className="transition-colors">
                   <button
                     onClick={() => setActiveIndex(isActive ? -1 : index)}
-                    className={`w-full p-4 flex items-center justify-between text-left ${
-                      isActive ? 'bg-[#0a5c36] text-white' : 'hover:bg-[#c6efd3] text-gray-950'
-                    }`}
+                    className={`w-full p-4 flex items-center justify-between text-left ${isActive ? 'bg-[#0a5c36] text-white' : 'hover:bg-[#c6efd3] text-gray-950'
+                      }`}
                   >
                     <div className="flex items-center space-x-3">
-                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${
-                        isActive ? 'bg-white/20 text-white' : 'bg-black/10 text-gray-900'
-                      }`}>
+                      <div className={`w-8 h-8 rounded-lg flex items-center justify-center ${isActive ? 'bg-white/20 text-white' : 'bg-black/10 text-gray-900'
+                        }`}>
                         <IconComp className="w-4 h-4" />
                       </div>
                       <span className="font-bold text-sm sm:text-base">{col.title}</span>
