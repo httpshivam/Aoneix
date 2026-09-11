@@ -1,15 +1,15 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { 
-  ExternalLink, 
-  Check, 
-  Shield, 
-  Settings, 
-  Zap, 
-  Phone, 
-  Video, 
-  ChevronLeft, 
-  ClipboardCheck, 
-  CheckCircle2, 
+import {
+  ExternalLink,
+  Check,
+  Shield,
+  Settings,
+  Zap,
+  Phone,
+  Video,
+  ChevronLeft,
+  ClipboardCheck,
+  CheckCircle2,
   Sparkles,
   ArrowRight,
   Lock,
@@ -182,7 +182,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
   const handleQuickReply = (text) => {
     if (selectedQuickReply) return;
     setSelectedQuickReply(text);
-    
+
     const currentTime = getIndiaTime(true);
 
     // Add user response to chat
@@ -194,21 +194,21 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
       setBotTyping(false);
       if (text.includes('Yes')) {
         setChatReplies((prev) => [
-          ...prev, 
-          { 
-            sender: 'bot', 
-            text: '🎉 Exclusive 15% VIP Access applied! Would you like to reserve yours with 1-click WhatsApp Pay?', 
+          ...prev,
+          {
+            sender: 'bot',
+            text: '🎉 Exclusive 15% VIP Access applied! Would you like to reserve yours with 1-click WhatsApp Pay?',
             time: getIndiaTime(true),
-            hasAction: true 
+            hasAction: true
           }
         ]);
       } else {
         setChatReplies((prev) => [
-          ...prev, 
-          { 
-            sender: 'bot', 
-            text: 'No problem at all! We have saved your preferences. Message us anytime for assistance!', 
-            time: getIndiaTime(true) 
+          ...prev,
+          {
+            sender: 'bot',
+            text: 'No problem at all! We have saved your preferences. Message us anytime for assistance!',
+            time: getIndiaTime(true)
           }
         ]);
       }
@@ -218,23 +218,23 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
   return (
     <section className="relative overflow-hidden pt-8 pb-20 lg:pt-14 lg:pb-28 bg-gradient-to-b from-[#e8fbf0]/60 via-[#f8fdf9]/30 to-white">
       {/* Background Soft Emerald Radial Blur Glow */}
-      <div 
-        className="absolute top-0 right-1/4 w-[650px] h-[650px] bg-gradient-to-br from-[#00c25a]/15 via-[#86efac]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10" 
+      <div
+        className="absolute top-0 right-1/4 w-[650px] h-[650px] bg-gradient-to-br from-[#00c25a]/15 via-[#86efac]/20 to-transparent rounded-full blur-3xl pointer-events-none -z-10"
         aria-hidden="true"
       />
-      <div 
-        className="absolute -top-20 left-10 w-[450px] h-[450px] bg-[#dcfce7]/40 rounded-full blur-3xl pointer-events-none -z-10" 
+      <div
+        className="absolute -top-20 left-10 w-[450px] h-[450px] bg-[#dcfce7]/40 rounded-full blur-3xl pointer-events-none -z-10"
         aria-hidden="true"
       />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         {/* Top Two Column Layout: Left Copy & Right Provision Card */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start mb-14">
-          
+
           {/* Left Column: Heading & Subtitle */}
           <div className="lg:col-span-7">
             {/* Meta BSP Verified Badge */}
-            <button 
+            <button
               onClick={() => onBadgeClick && onBadgeClick('Meta BSP Verified', 'Official Cloud Integration API with 99.99% uptime')}
               className="inline-flex items-center gap-2 bg-[#132c1c] text-white text-xs font-semibold px-4 py-2 rounded-md tracking-wide shadow-sm mb-6 cursor-pointer hover:bg-[#1c3f29] transition-colors"
             >
@@ -257,7 +257,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
           {/* Right Column: Provision Space Card (Matching SS 1) */}
           <div className="w-full lg:col-span-5 flex justify-center lg:justify-end">
             <div className="bg-white rounded-2xl p-7 sm:p-8 shadow-xl shadow-gray-200/60 border border-gray-100 w-full max-w-full lg:max-w-md relative transition-transform hover:-translate-y-0.5 duration-200">
-              
+
               {/* Card Header */}
               <div className="flex items-center justify-between mb-2">
                 <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
@@ -289,7 +289,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
               </div>
 
               {/* CTA Button: Authenticate via Meta Channels */}
-              <button 
+              <button
                 onClick={onOpenAuthModal}
                 className="w-full bg-[#00c25a] hover:bg-[#00a84e] text-white font-semibold text-sm sm:text-base py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg hover:shadow-emerald-200/50 transition-all flex items-center justify-center gap-2 group active:scale-[0.98]"
               >
@@ -301,7 +301,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
               <div className="text-center mt-5">
                 <p className="text-xs text-gray-500">
                   Already tracking parameters?{' '}
-                  <button 
+                  <button
                     onClick={onOpenAuthModal}
                     className="font-semibold text-gray-800 hover:text-[#00c25a] transition-colors underline underline-offset-2"
                   >
@@ -316,9 +316,9 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
 
         {/* Interactive Showcase Mockup: Phone & WhatsApp Configure Matrix */}
         <div className="relative mt-8 max-w-5xl mx-auto">
-          
+
           {/* Floating Badge 1: Instant SDK Handshake (Top Left) */}
-          <button 
+          <button
             onClick={() => onBadgeClick && onBadgeClick('Instant SDK Handshake', 'Latency < 45ms direct to Meta WhatsApp endpoints')}
             className="animate-float-1 hidden md:flex absolute -top-6 -left-8 lg:-left-4 z-20 items-center gap-2.5 bg-[#4ed181] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 backdrop-blur-sm border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
           >
@@ -329,7 +329,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
           </button>
 
           {/* Floating Badge 2: Automated Sync (Top Right of Phone) */}
-          <button 
+          <button
             onClick={() => onBadgeClick && onBadgeClick('Automated Sync', 'Full bi-directional WhatsApp Business webhook synchronization')}
             className="animate-float-2 hidden md:flex absolute top-4 right-10 lg:right-24 z-20 items-center gap-2.5 bg-[#173827] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-black/10 border border-emerald-900/40 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
           >
@@ -341,7 +341,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
 
           {/* Floating Badge 3: Vault-Grade Security (Bottom Center) */}
           <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 z-20">
-            <button 
+            <button
               onClick={() => onBadgeClick && onBadgeClick('Vault-Grade Security', 'Zero cross-tenant leaks with isolated encryption keys')}
               className="animate-float-3 flex items-center gap-2.5 bg-[#3eb76f] text-white text-xs sm:text-sm font-semibold px-5 py-2.5 rounded-xl shadow-xl shadow-emerald-600/25 border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
             >
@@ -360,10 +360,10 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
             <div className="w-[300px] sm:w-[325px] bg-[#111827] p-2.5 rounded-[2.5rem] shadow-2xl shadow-emerald-900/20 border-4 border-gray-900 shrink-0">
               {/* Phone Inner Screen */}
               <div className="bg-[#e5ddd5] rounded-[2rem] overflow-hidden flex flex-col h-[530px] border border-gray-700/30 text-gray-900 relative">
-                
+
                 {/* Phone Status Bar */}
                 <div className="bg-[#075e37] text-white px-5 pt-2 pb-1 text-[11px] flex justify-between items-center font-medium">
-                  <span className="font-semibold tracking-tight">{livePhoneTime}</span>
+                  <span>3:25</span>
                   <div className="w-14 h-3.5 bg-black rounded-full mx-auto" />
                   <div className="flex items-center space-x-1.5 text-[10px]">
                     <span>5G</span>
@@ -376,20 +376,21 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                   <div className="flex items-center space-x-2">
                     <ChevronLeft className="w-5 h-5 cursor-pointer text-white/80 hover:text-white" />
                     {/* Aoneix Favicon Avatar */}
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-[#00c25a] relative shadow-sm overflow-hidden shrink-0">
+                    <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 shadow-sm bg-[#163323] flex items-center justify-center">
                       <img 
                         src={faviconImg} 
                         alt="Aoneix Favicon" 
-                        className="w-full h-full object-contain p-0.5" 
+                        className="w-full h-full object-cover" 
                       />
-                      <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-[#00c25a] rounded-full flex items-center justify-center border border-white">
-                        <Check className="w-2 h-2 text-white stroke-[3]" />
-                      </div>
                     </div>
                     <div>
-                      <div className="flex items-center space-x-1">
-                        <span className="font-bold text-xs tracking-tight">AONEIX</span>
-                        <CheckCircle2 className="w-3 h-3 text-[#25d366] fill-[#25d366] text-white" />
+                      <div className="flex items-center space-x-1.5">
+                        <span className="font-bold text-xs tracking-tight text-white">AONEIX</span>
+                        {/* Meta WhatsApp Official Scalloped Verified Badge */}
+                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none">
+                          <path d="M10.52 2.44a2 2 0 0 1 2.96 0l.44.48a2 2 0 0 0 1.62.67l.65-.05a2 2 0 0 1 2.1 2.1l-.05.65a2 2 0 0 0 .67 1.62l.48.44a2 2 0 0 1 0 2.96l-.48.44a2 2 0 0 0-.67 1.62l.05.65a2 2 0 0 1-2.1 2.1l-.65-.05a2 2 0 0 0-1.62.67l-.44.48a2 2 0 0 1-2.96 0l-.44-.48a2 2 0 0 0-1.62-.67l-.65.05a2 2 0 0 1-2.1-2.1l.05-.65a2 2 0 0 0-.67-1.62l-.48-.44a2 2 0 0 1 0-2.96l.48-.44a2 2 0 0 0 .67-1.62l-.05-.65a2 2 0 0 1 2.1-2.1l.65.05a2 2 0 0 0 1.62-.67l.44-.48z" fill="#00C25A"/>
+                          <path d="M9 12.5l2 2 4.5-4.5" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
                       </div>
                       <span className="text-[10px] text-emerald-200 block">Verified Business</span>
                     </div>
@@ -402,12 +403,12 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                 </div>
 
                 {/* Chat Message Scrollable Container */}
-                <div 
+                <div
                   ref={chatContainerRef}
                   className="flex-1 p-3 overflow-y-auto space-y-3 bg-[#e8ece8] relative text-xs"
                 >
                   {/* Subtle WhatsApp Wallpaper Pattern Simulation */}
-                  <div 
+                  <div
                     className="absolute inset-0 opacity-15 pointer-events-none"
                     style={{
                       backgroundImage: `radial-gradient(#075e37 0.75px, transparent 0.75px)`,
@@ -428,9 +429,9 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                     <div className="absolute top-2 right-2 z-10">
                       <div className="relative">
                         <div className="w-7 h-7 rounded-full overflow-hidden border-2 border-white shadow-md bg-amber-100">
-                          <img 
-                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" 
-                            alt="Aoneix Sales Concierge" 
+                          <img
+                            src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80"
+                            alt="Aoneix Sales Concierge"
                             className="w-full h-full object-cover"
                             onError={(e) => {
                               e.target.style.display = 'none';
@@ -445,9 +446,9 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
 
                     {/* Product Image: Luxe Brown Tote */}
                     <div className="h-28 bg-[#f5ede3] relative overflow-hidden flex items-center justify-center">
-                      <img 
-                        src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=400&q=80" 
-                        alt="Aoneix Luxe Tote Bag" 
+                      <img
+                        src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=400&q=80"
+                        alt="Aoneix Luxe Tote Bag"
                         className="h-full w-full object-cover"
                         onError={(e) => {
                           e.target.parentElement.innerHTML = `
@@ -472,19 +473,17 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
 
                     {/* Quick Reply Interactive Buttons */}
                     <div className="border-t border-gray-100 divide-y divide-gray-100 text-center text-[11px] font-semibold text-[#00c25a]">
-                      <button 
+                      <button
                         onClick={() => handleQuickReply('Yes, show me more')}
-                        className={`w-full py-2 hover:bg-green-50 transition-colors flex items-center justify-center gap-1.5 ${
-                          selectedQuickReply === 'Yes, show me more' ? 'bg-emerald-50 text-emerald-800 font-bold' : ''
-                        }`}
+                        className={`w-full py-2 hover:bg-green-50 transition-colors flex items-center justify-center gap-1.5 ${selectedQuickReply === 'Yes, show me more' ? 'bg-emerald-50 text-emerald-800 font-bold' : ''
+                          }`}
                       >
                         <span>Yes, show me more</span>
                       </button>
-                      <button 
+                      <button
                         onClick={() => handleQuickReply('Maybe later')}
-                        className={`w-full py-2 hover:bg-gray-50 text-gray-500 transition-colors ${
-                          selectedQuickReply === 'Maybe later' ? 'bg-gray-100 font-bold' : ''
-                        }`}
+                        className={`w-full py-2 hover:bg-gray-50 text-gray-500 transition-colors ${selectedQuickReply === 'Maybe later' ? 'bg-gray-100 font-bold' : ''
+                          }`}
                       >
                         <span>Maybe later</span>
                       </button>
@@ -493,21 +492,20 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
 
                   {/* Dynamic User & Bot Replies */}
                   {chatReplies.map((reply, idx) => (
-                    <div 
-                      key={idx} 
+                    <div
+                      key={idx}
                       className={`flex flex-col ${reply.sender === 'user' ? 'items-end' : 'items-start'} animate-in fade-in slide-in-from-bottom-2 duration-200`}
                     >
-                      <div className={`p-2.5 rounded-xl max-w-[240px] text-[11px] shadow-sm leading-relaxed whitespace-pre-line ${
-                        reply.sender === 'user' 
-                          ? 'bg-[#d9fdd3] text-gray-900 rounded-tr-none' 
-                          : 'bg-white text-gray-900 rounded-tl-none border border-gray-100'
-                      }`}>
+                      <div className={`p-2.5 rounded-xl max-w-[240px] text-[11px] shadow-sm leading-relaxed whitespace-pre-line ${reply.sender === 'user'
+                        ? 'bg-[#d9fdd3] text-gray-900 rounded-tr-none'
+                        : 'bg-white text-gray-900 rounded-tl-none border border-gray-100'
+                        }`}>
                         <p>{reply.text}</p>
-                        
+
                         {/* Legacy Quick Reply action */}
                         {reply.hasAction && (
                           <div className="mt-2 pt-1.5 border-t border-emerald-100">
-                            <button 
+                            <button
                               onClick={onOpenAuthModal}
                               className="w-full bg-[#00c25a] hover:bg-[#00a84e] text-white py-1 rounded text-[10px] font-bold shadow-xs cursor-pointer"
                             >
@@ -519,7 +517,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                         {/* Interactive Bot Action CTA */}
                         {reply.actionText && (
                           <div className="mt-2 pt-1.5 border-t border-emerald-100">
-                            <button 
+                            <button
                               type="button"
                               onClick={(e) => {
                                 e.preventDefault();
@@ -576,11 +574,11 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                 </div>
 
                 {/* Real Interactive Input Form */}
-                <form 
+                <form
                   onSubmit={handleSendMessage}
                   className="bg-white p-1.5 border-t border-gray-200 flex items-center gap-1.5 text-[11px] relative z-10"
                 >
-                  <input 
+                  <input
                     type="text"
                     value={inputText}
                     onChange={(e) => setInputText(e.target.value)}
@@ -590,11 +588,10 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                   <button
                     type="submit"
                     disabled={!inputText.trim()}
-                    className={`w-7 h-7 rounded-full flex items-center justify-center transition-all shrink-0 ${
-                      inputText.trim() 
-                        ? 'bg-[#00c25a] hover:bg-[#00a84e] text-white cursor-pointer shadow-sm scale-105 active:scale-95' 
-                        : 'bg-gray-200 text-gray-400 cursor-not-allowed'
-                    }`}
+                    className={`w-7 h-7 rounded-full flex items-center justify-center transition-all shrink-0 ${inputText.trim()
+                      ? 'bg-[#00c25a] hover:bg-[#00a84e] text-white cursor-pointer shadow-sm scale-105 active:scale-95'
+                      : 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                      }`}
                     title="Send message"
                   >
                     <Send className="w-3.5 h-3.5" />
@@ -606,7 +603,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
 
             {/* Right Item: WhatsApp Configure Editor Matrix (Matching SS 1) */}
             <div className="w-full max-w-sm bg-white rounded-2xl p-5 shadow-xl border border-gray-100 relative">
-              
+
               {/* Card Mini Header */}
               <div className="flex items-center justify-between mb-3.5">
                 <div className="flex items-center gap-1.5">
@@ -620,9 +617,9 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
 
               {/* Media Preview Box */}
               <div className="rounded-lg bg-[#faf7f2] border border-gray-200 p-2.5 mb-3 flex items-center justify-center h-28 relative overflow-hidden">
-                <img 
-                  src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=300&q=80" 
-                  alt="Template Media" 
+                <img
+                  src="https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=300&q=80"
+                  alt="Template Media"
                   className="h-full object-contain mix-blend-multiply"
                   onError={(e) => {
                     e.target.style.display = 'none';
@@ -654,7 +651,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                   <label className="text-[11px] font-semibold text-gray-700 block mb-1.5">
                     Quick Reply Buttons
                   </label>
-                  
+
                   <div className="grid grid-cols-2 gap-2">
                     <div className="p-2 bg-gray-50 border border-gray-200 rounded-lg text-center text-[10px] font-medium text-gray-700 flex items-center justify-center gap-1">
                       <span>💬 Yes, show me more</span>
@@ -667,7 +664,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                   {/* Flow Connector Line and CTA */}
                   <div className="mt-3 pt-2 text-center relative">
                     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-8 h-2 border-b-2 border-emerald-400" />
-                    <button 
+                    <button
                       onClick={onOpenAuthModal}
                       className="bg-[#6366f1] hover:bg-[#4f46e5] text-white text-[11px] font-medium px-4 py-1.5 rounded-lg shadow-sm transition-all hover:scale-105 active:scale-95 flex items-center gap-1.5 mx-auto"
                     >
