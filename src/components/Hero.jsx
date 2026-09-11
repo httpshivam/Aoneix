@@ -363,7 +363,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
 
                 {/* Phone Status Bar */}
                 <div className="bg-[#075e37] text-white px-5 pt-2 pb-1 text-[11px] flex justify-between items-center font-medium">
-                  <span>3:25</span>
+                  <span className="font-semibold tracking-tight">{livePhoneTime}</span>
                   <div className="w-14 h-3.5 bg-black rounded-full mx-auto" />
                   <div className="flex items-center space-x-1.5 text-[10px]">
                     <span>5G</span>
@@ -384,15 +384,15 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                       />
                     </div>
                     <div>
-                      <div className="flex items-center space-x-1.5">
-                        <span className="font-bold text-xs tracking-tight text-white">AONEIX</span>
+                      <div className="flex items-center space-x-1.5 leading-none">
+                        <span className="font-bold text-xs tracking-tight text-white leading-none">AONEIX</span>
                         {/* Meta WhatsApp Official Scalloped Verified Badge */}
-                        <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="none">
-                          <path d="M10.52 2.44a2 2 0 0 1 2.96 0l.44.48a2 2 0 0 0 1.62.67l.65-.05a2 2 0 0 1 2.1 2.1l-.05.65a2 2 0 0 0 .67 1.62l.48.44a2 2 0 0 1 0 2.96l-.48.44a2 2 0 0 0-.67 1.62l.05.65a2 2 0 0 1-2.1 2.1l-.65-.05a2 2 0 0 0-1.62.67l-.44.48a2 2 0 0 1-2.96 0l-.44-.48a2 2 0 0 0-1.62-.67l-.65.05a2 2 0 0 1-2.1-2.1l.05-.65a2 2 0 0 0-.67-1.62l-.48-.44a2 2 0 0 1 0-2.96l.48-.44a2 2 0 0 0 .67-1.62l-.05-.65a2 2 0 0 1 2.1-2.1l.65.05a2 2 0 0 0 1.62-.67l.44-.48z" fill="#00C25A"/>
+                        <svg className="w-3.5 h-3.5 shrink-0 translate-y-[1px]" viewBox="0 0 24 24" fill="none">
+                          <path d="M10.52 2.44a2 2 0 0 1 2.96 0l.44.48a2 2 0 0 0 1.62.67l.65-.05a2 2 0 0 1 2.1 2.1l-.05.65a2 2 0 0 1 .67 1.62l.48.44a2 2 0 0 1 0 2.96l-.48.44a2 2 0 0 0-.67 1.62l.05.65a2 2 0 0 1-2.1 2.1l-.65-.05a2 2 0 0 0-1.62.67l-.44.48a2 2 0 0 1-2.96 0l-.44-.48a2 2 0 0 0-1.62-.67l-.65.05a2 2 0 0 1-2.1-2.1l.05-.65a2 2 0 0 0-.67-1.62l-.48-.44a2 2 0 0 1 0-2.96l.48-.44a2 2 0 0 0 .67-1.62l-.05-.65a2 2 0 0 1 2.1-2.1l.65.05a2 2 0 0 0 1.62-.67l.44-.48z" fill="#00C25A"/>
                           <path d="M9 12.5l2 2 4.5-4.5" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
                         </svg>
                       </div>
-                      <span className="text-[10px] text-emerald-200 block">Verified Business</span>
+                      <span className="text-[10px] text-emerald-200 block mt-0.5">Verified Business</span>
                     </div>
                   </div>
 
