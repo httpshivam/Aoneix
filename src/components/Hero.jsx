@@ -16,8 +16,34 @@ import {
   Send
 } from 'lucide-react';
 import AoneixLogo from './AoneixLogo';
+import faviconImg from '../assets/favicon.png';
 
 export default function Hero({ onOpenAuthModal, onBadgeClick }) {
+  // Live Indian Standard Time (IST, GMT+5:30) helper
+  const getIndiaTime = (withPeriod = true) => {
+    const formatted = new Intl.DateTimeFormat('en-IN', {
+      timeZone: 'Asia/Kolkata',
+      hour: 'numeric',
+      minute: '2-digit',
+      hour12: true
+    }).format(new Date());
+
+    return withPeriod ? formatted : formatted.replace(/\s*[ap]m/i, '').trim();
+  };
+
+  // Real-time automatic clock for phone status bar & chat
+  const [livePhoneTime, setLivePhoneTime] = useState(() => getIndiaTime(false));
+
+  useEffect(() => {
+    const updateLiveTime = () => {
+      setLivePhoneTime(getIndiaTime(false));
+    };
+
+    updateLiveTime();
+    const timer = setInterval(updateLiveTime, 1000);
+    return () => clearInterval(timer);
+  }, []);
+
   // Interactive WhatsApp chat state
   const [chatReplies, setChatReplies] = useState([]);
   const [selectedQuickReply, setSelectedQuickReply] = useState(null);
@@ -125,7 +151,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
     const query = (customText || inputText).trim();
     if (!query) return;
 
-    const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const currentTime = getIndiaTime(true);
 
     // Add user message to chat
     setChatReplies((prev) => [
@@ -144,7 +170,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
         {
           sender: 'bot',
           text: botAns.text,
-          time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+          time: getIndiaTime(true),
           actionText: botAns.actionText,
           onAction: botAns.onAction,
           actionLink: botAns.actionLink
@@ -157,8 +183,10 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
     if (selectedQuickReply) return;
     setSelectedQuickReply(text);
     
+    const currentTime = getIndiaTime(true);
+
     // Add user response to chat
-    setChatReplies((prev) => [...prev, { sender: 'user', text, time: '3:26 PM' }]);
+    setChatReplies((prev) => [...prev, { sender: 'user', text, time: currentTime }]);
 
     // Trigger simulated bot reply
     setBotTyping(true);
@@ -170,7 +198,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
           { 
             sender: 'bot', 
             text: '🎉 Exclusive 15% VIP Access applied! Would you like to reserve yours with 1-click WhatsApp Pay?', 
-            time: '3:26 PM',
+            time: getIndiaTime(true),
             hasAction: true 
           }
         ]);
@@ -180,7 +208,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
           { 
             sender: 'bot', 
             text: 'No problem at all! We have saved your preferences. Message us anytime for assistance!', 
-            time: '3:26 PM' 
+            time: getIndiaTime(true) 
           }
         ]);
       }
@@ -335,7 +363,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                 
                 {/* Phone Status Bar */}
                 <div className="bg-[#075e37] text-white px-5 pt-2 pb-1 text-[11px] flex justify-between items-center font-medium">
-                  <span>3:25</span>
+                  <span className="font-semibold tracking-tight">{livePhoneTime}</span>
                   <div className="w-14 h-3.5 bg-black rounded-full mx-auto" />
                   <div className="flex items-center space-x-1.5 text-[10px]">
                     <span>5G</span>
@@ -347,11 +375,13 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                 <div className="bg-[#075e37] text-white px-3 py-2 flex items-center justify-between shadow-md">
                   <div className="flex items-center space-x-2">
                     <ChevronLeft className="w-5 h-5 cursor-pointer text-white/80 hover:text-white" />
-                    {/* Aoneix Avatar */}
-                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-[#00c25a] relative">
-                      <div className="w-6 h-6 rounded-full bg-[#075e37] text-[#00c25a] font-bold text-[10px] flex items-center justify-center">
-                        AO
-                      </div>
+                    {/* Aoneix Favicon Avatar */}
+                    <div className="w-8 h-8 rounded-full bg-white flex items-center justify-center border-2 border-[#00c25a] relative shadow-sm overflow-hidden shrink-0">
+                      <img 
+                        src={faviconImg} 
+                        alt="Aoneix Favicon" 
+                        className="w-full h-full object-contain p-0.5" 
+                      />
                       <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-[#00c25a] rounded-full flex items-center justify-center border border-white">
                         <Check className="w-2 h-2 text-white stroke-[3]" />
                       </div>
