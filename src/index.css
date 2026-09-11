@@ -1,0 +1,119 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "SF Pro", system-ui, sans-serif;
+  }
+}
+
+/* Custom vertical text utility for accordion tabs */
+.vertical-text {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  white-space: nowrap;
+}
+
+/* Custom delicate scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Gradient text utility */
+.gradient-text-green {
+  background: linear-gradient(135deg, #00c25a 0%, #075e37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Subtle glow effect */
+.green-glow {
+  box-shadow: 0 0 40px -10px rgba(0, 194, 90, 0.3);
+}
+
+.emerald-glow {
+  box-shadow: 0 10px 30px -10px rgba(7, 94, 55, 0.4);
+}
+
+/* Clean vertical float animations with zero tilt */
+@keyframes float-up-down-1 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes float-up-down-2 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-9px);
+  }
+}
+
+@keyframes float-up-down-3 {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-11px);
+  }
+}
+
+.animate-float-1 {
+  animation: float-up-down-1 3.8s ease-in-out infinite;
+}
+
+.animate-float-2 {
+  animation: float-up-down-2 4.4s ease-in-out infinite 0.6s;
+}
+
+.animate-float-3 {
+  animation: float-up-down-3 4.0s ease-in-out infinite 1.2s;
+}
+
+/* Pause float on hover so button stays completely steady */
+.animate-float-1:hover,
+.animate-float-2:hover,
+.animate-float-3:hover {
+  animation-play-state: paused;
+}
+
+@keyframes liquid-shimmer {
+  0% {
+    transform: translateX(-150%) skewX(-25deg);
+  }
+  100% {
+    transform: translateX(200%) skewX(-25deg);
+  }
+}
+
+/* Liquid badge — no layout/alignment shift on hover */
+.liquid-badge {
+  position: relative;
+  will-change: transform;
+}
+
+/* Hover only triggers internal liquid effects; float pauses via animation-play-state above */
+
+.liquid-shimmer {
+  animation: liquid-shimmer 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
