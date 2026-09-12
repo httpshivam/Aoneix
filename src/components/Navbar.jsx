@@ -12,31 +12,36 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
     e.stopPropagation();
     if (isBannerVanishing) return;
 
+    // Trigger butter-smooth vanishing animation immediately
+    setIsBannerVanishing(true);
+
     if (e?.currentTarget) {
       const rect = e.currentTarget.getBoundingClientRect();
       const x = (rect.left + rect.width / 2) / window.innerWidth;
       const y = (rect.top + rect.height / 2) / window.innerHeight;
-      try {
-        confetti({
-          particleCount: 16,
-          spread: 55,
-          origin: { x, y },
-          colors: ['#059669', '#34d399', '#86efac', '#fbbf24', '#ffffff'],
-          ticks: 45,
-          gravity: 0.85,
-          scalar: 0.65,
-          shapes: ['circle', 'star']
-        });
-      } catch (err) {
-        // graceful fallback
-      }
+      
+      // Decouple sparkles to requestAnimationFrame so CSS animation starts at 60fps
+      requestAnimationFrame(() => {
+        try {
+          confetti({
+            particleCount: 14,
+            spread: 50,
+            origin: { x, y },
+            colors: ['#059669', '#34d399', '#86efac', '#fbbf24'],
+            ticks: 40,
+            gravity: 0.85,
+            scalar: 0.6,
+            shapes: ['circle']
+          });
+        } catch (_) {}
+      });
     }
 
-    setIsBannerVanishing(true);
+    // Wait until full 450ms collapse completes before removing from DOM
     setTimeout(() => {
       setIsBannerDismissed(true);
       setIsBannerVanishing(false);
-    }, 450);
+    }, 500);
   };
 
   const handleRestoreBanner = () => {
@@ -103,35 +108,37 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
       {/* Light Green Announcement Banner (Notification Center) */}
       {!isBannerDismissed && (
         <div 
-          className={`notification-banner-container bg-[#bbf7d0]/80 border-b border-[#86efac]/50 text-gray-900 text-xs sm:text-sm px-4 ${
-            isBannerVanishing ? 'notification-banner-vanishing' : 'py-2'
-          }`}
+          className={`notification-banner-wrapper ${isBannerVanishing ? 'vanishing' : ''}`}
         >
-          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-2.5">
-            <div className="flex items-center gap-2 text-center sm:text-left mx-auto sm:mx-0">
-              <Sparkles className="w-3.5 h-3.5 text-emerald-800 hidden sm:inline shrink-0 animate-pulse" />
-              <span className="font-normal text-emerald-950">
-                Sign up on Aoneix with Instagram or Facebook: now with AI-powered comment and DM automations.
-              </span>
-            </div>
+          <div className="notification-banner-inner">
+            <div className="bg-[#bbf7d0]/80 border-b border-[#86efac]/50 text-gray-900 text-xs sm:text-sm px-4 py-2">
+              <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-2.5">
+                <div className="flex items-center gap-2 text-center sm:text-left mx-auto sm:mx-0">
+                  <Sparkles className="w-3.5 h-3.5 text-emerald-800 hidden sm:inline shrink-0 animate-pulse" />
+                  <span className="font-normal text-emerald-950">
+                    Sign up on Aoneix with Instagram or Facebook: now with AI-powered comment and DM automations.
+                  </span>
+                </div>
 
-            <div className="flex items-center gap-2 mx-auto sm:mx-0 shrink-0">
-              <button 
-                onClick={onOpenAnnouncement}
-                className="text-xs font-semibold bg-[#75dc97] hover:bg-[#5fcf84] text-emerald-950 px-3.5 py-1 rounded-md transition-all shadow-sm active:scale-95 whitespace-nowrap"
-              >
-                See what's new
-              </button>
+                <div className="flex items-center gap-2 mx-auto sm:mx-0 shrink-0">
+                  <button 
+                    onClick={onOpenAnnouncement}
+                    className="text-xs font-semibold bg-[#75dc97] hover:bg-[#5fcf84] text-emerald-950 px-3.5 py-1 rounded-md transition-all shadow-sm active:scale-95 whitespace-nowrap"
+                  >
+                    See what's new
+                  </button>
 
-              {/* Cut Mark / Minimize Button with Magical Vanish Interaction */}
-              <button
-                onClick={handleDismissBanner}
-                className="p-1 rounded-md text-emerald-900/70 hover:text-emerald-950 hover:bg-emerald-600/20 active:scale-90 transition-all flex items-center justify-center group"
-                title="Minimize / Dismiss notification"
-                aria-label="Dismiss notification"
-              >
-                <X className="w-4 h-4 transition-transform group-hover:rotate-90 duration-200 stroke-[2.2]" />
-              </button>
+                  {/* Cut Mark / Minimize Button with Magical Vanish Interaction */}
+                  <button
+                    onClick={handleDismissBanner}
+                    className="p-1 rounded-md text-emerald-900/70 hover:text-emerald-950 hover:bg-emerald-600/20 active:scale-90 transition-all flex items-center justify-center group"
+                    title="Minimize / Dismiss notification"
+                    aria-label="Dismiss notification"
+                  >
+                    <X className="w-4 h-4 transition-transform group-hover:rotate-90 duration-200 stroke-[2.2]" />
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
