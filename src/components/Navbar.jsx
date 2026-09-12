@@ -1,9 +1,48 @@
 import React, { useState } from 'react';
 import AoneixLogo from './AoneixLogo';
 import { User, Menu, X, ArrowRight, Sparkles, LogIn } from 'lucide-react';
+import confetti from 'canvas-confetti';
 
 export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isBannerDismissed, setIsBannerDismissed] = useState(false);
+  const [isBannerVanishing, setIsBannerVanishing] = useState(false);
+
+  const handleDismissBanner = (e) => {
+    e.stopPropagation();
+    if (isBannerVanishing) return;
+
+    if (e?.currentTarget) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const x = (rect.left + rect.width / 2) / window.innerWidth;
+      const y = (rect.top + rect.height / 2) / window.innerHeight;
+      try {
+        confetti({
+          particleCount: 16,
+          spread: 55,
+          origin: { x, y },
+          colors: ['#059669', '#34d399', '#86efac', '#fbbf24', '#ffffff'],
+          ticks: 45,
+          gravity: 0.85,
+          scalar: 0.65,
+          shapes: ['circle', 'star']
+        });
+      } catch (err) {
+        // graceful fallback
+      }
+    }
+
+    setIsBannerVanishing(true);
+    setTimeout(() => {
+      setIsBannerDismissed(true);
+      setIsBannerVanishing(false);
+    }, 450);
+  };
+
+  const handleRestoreBanner = () => {
+    setIsBannerDismissed(false);
+    setIsBannerVanishing(false);
+  };
 
   const navLinks = [
     { name: 'Features', href: '#features' },
@@ -39,6 +78,17 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
           </div>
 
           <div className="flex items-center space-x-3">
+            {isBannerDismissed && (
+              <button
+                onClick={handleRestoreBanner}
+                className="inline-flex items-center gap-1.5 text-[11px] text-emerald-300 hover:text-white bg-emerald-950/70 hover:bg-emerald-900/90 border border-emerald-500/30 px-2.5 py-0.5 rounded-full transition-all duration-200 group active:scale-95"
+                title="Restore notification banner"
+              >
+                <Sparkles className="w-3 h-3 text-emerald-400 group-hover:rotate-12 transition-transform" />
+                <span>Show Offer</span>
+              </button>
+            )}
+
             <button 
               onClick={onOpenAuthModal} 
               className="flex items-center space-x-1.5 text-gray-200 hover:text-white transition-colors font-medium text-xs group"
@@ -50,23 +100,42 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
         </div>
       </div>
 
-      {/* Light Green Announcement Banner */}
-      <div className="bg-[#bbf7d0]/80 border-b border-[#86efac]/50 text-gray-900 text-xs sm:text-sm py-2 px-4">
-        <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-2">
-          <div className="flex items-center gap-2 text-center sm:text-left mx-auto sm:mx-0">
-            <Sparkles className="w-3.5 h-3.5 text-emerald-800 hidden sm:inline" />
-            <span className="font-normal text-emerald-950">
-              Sign up on Aoneix with Instagram or Facebook: now with AI-powered comment and DM automations.
-            </span>
+      {/* Light Green Announcement Banner (Notification Center) */}
+      {!isBannerDismissed && (
+        <div 
+          className={`notification-banner-container bg-[#bbf7d0]/80 border-b border-[#86efac]/50 text-gray-900 text-xs sm:text-sm px-4 ${
+            isBannerVanishing ? 'notification-banner-vanishing' : 'py-2'
+          }`}
+        >
+          <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-center sm:justify-between gap-2.5">
+            <div className="flex items-center gap-2 text-center sm:text-left mx-auto sm:mx-0">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-800 hidden sm:inline shrink-0 animate-pulse" />
+              <span className="font-normal text-emerald-950">
+                Sign up on Aoneix with Instagram or Facebook: now with AI-powered comment and DM automations.
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2 mx-auto sm:mx-0 shrink-0">
+              <button 
+                onClick={onOpenAnnouncement}
+                className="text-xs font-semibold bg-[#75dc97] hover:bg-[#5fcf84] text-emerald-950 px-3.5 py-1 rounded-md transition-all shadow-sm active:scale-95 whitespace-nowrap"
+              >
+                See what's new
+              </button>
+
+              {/* Cut Mark / Minimize Button with Magical Vanish Interaction */}
+              <button
+                onClick={handleDismissBanner}
+                className="p-1 rounded-md text-emerald-900/70 hover:text-emerald-950 hover:bg-emerald-600/20 active:scale-90 transition-all flex items-center justify-center group"
+                title="Minimize / Dismiss notification"
+                aria-label="Dismiss notification"
+              >
+                <X className="w-4 h-4 transition-transform group-hover:rotate-90 duration-200 stroke-[2.2]" />
+              </button>
+            </div>
           </div>
-          <button 
-            onClick={onOpenAnnouncement}
-            className="text-xs font-semibold bg-[#75dc97] hover:bg-[#5fcf84] text-emerald-950 px-3.5 py-1 rounded-md transition-all shadow-sm active:scale-95 mx-auto sm:mx-0 whitespace-nowrap"
-          >
-            See what's new
-          </button>
         </div>
-      </div>
+      )}
 
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between border-b border-gray-100">
