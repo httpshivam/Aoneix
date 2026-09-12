@@ -38,6 +38,7 @@
 .gradient-text-green {
   background: linear-gradient(135deg, #00c25a 0%, #075e37 100%);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
@@ -104,6 +105,24 @@
 .animate-float-2:hover,
 .animate-float-3:hover {
   animation-play-state: paused;
+}
+
+/* Silky smooth organic floating motion for login illustration */
+@keyframes login-img-motion {
+
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+
+  50% {
+    transform: translateY(-9px) rotate(0.4deg);
+  }
+}
+
+.animate-login-motion {
+  animation: login-img-motion 4.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 @keyframes liquid-shimmer {
@@ -405,7 +424,7 @@
   grid-template-rows: 1fr;
   overflow: hidden;
   will-change: grid-template-rows, opacity, transform, filter;
-  transition: 
+  transition:
     grid-template-rows 0.45s cubic-bezier(0.16, 1, 0.3, 1),
     opacity 0.35s ease-out,
     transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),

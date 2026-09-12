@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import EnterpriseScale from './components/EnterpriseScale';
@@ -6,17 +6,59 @@ import Metrics from './components/Metrics';
 import Pricing from './components/Pricing';
 import FAQ from './components/FAQ';
 import Footer from './components/Footer';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
+import ForgotPassword from './components/ForgotPassword';
 import MetaAuthModal from './components/MetaAuthModal';
 import AskQuestionModal from './components/AskQuestionModal';
 import CheckoutModal from './components/CheckoutModal';
 import { CheckCircle2, Sparkles, X } from 'lucide-react';
 
 export default function App() {
+  const [currentPage, setCurrentPage] = useState(() => {
+    if (window.location.hash === '#forgot-password' || window.location.hash === '#forgot') return 'forgot-password';
+    if (window.location.hash === '#signup' || window.location.hash === '#register') return 'signup';
+    if (window.location.hash === '#signin' || window.location.hash === '#login') return 'signin';
+    return 'home';
+  });
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const [isAskModalOpen, setIsAskModalOpen] = useState(false);
   const [selectedPlanForCheckout, setSelectedPlanForCheckout] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
   const [announcementModalOpen, setAnnouncementModalOpen] = useState(false);
+
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash === '#forgot-password' || window.location.hash === '#forgot') {
+        setCurrentPage('forgot-password');
+      } else if (window.location.hash === '#signup' || window.location.hash === '#register') {
+        setCurrentPage('signup');
+      } else if (window.location.hash === '#signin' || window.location.hash === '#login') {
+        setCurrentPage('signin');
+      } else if (window.location.hash === '' || window.location.hash === '#' || window.location.hash.startsWith('#features') || window.location.hash.startsWith('#metrics') || window.location.hash.startsWith('#pricing') || window.location.hash.startsWith('#faq')) {
+        setCurrentPage('home');
+      }
+    };
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
+  const navigateTo = (page) => {
+    setCurrentPage(page);
+    if (page === 'forgot-password') {
+      window.location.hash = '#forgot-password';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'signup') {
+      window.location.hash = '#signup';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'signin') {
+      window.location.hash = '#signin';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.location.hash = '';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   const showToast = (message) => {
     setToastMessage(message);
@@ -35,20 +77,44 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sf selection:bg-[#00c25a] selection:text-white">
-      {/* Navigation */}
-      <Navbar
-        onOpenAuthModal={() => setIsAuthModalOpen(true)}
-        onOpenAnnouncement={() => setAnnouncementModalOpen(true)}
-      />
-
-      {/* Main Sections Matching Screenshots */}
-      <main className="flex-1">
-        {/* Screenshot 1: Hero Section with Live WhatsApp Chat Simulator & Provision Card */}
-        <Hero
-          onOpenAuthModal={() => setIsAuthModalOpen(true)}
-          onBadgeClick={(title, desc) => showToast(`✓ ${title} — ${desc}`)}
+    <>
+      {currentPage === 'forgot-password' ? (
+        <ForgotPassword
+          onBack={() => navigateTo('home')}
+          onOpenSignIn={() => navigateTo('signin')}
+          onOpenSignUp={() => navigateTo('signup')}
+          showToast={showToast}
         />
+      ) : currentPage === 'signup' ? (
+        <SignUp
+          onBack={() => navigateTo('home')}
+          onOpenSignIn={() => navigateTo('signin')}
+          showToast={showToast}
+        />
+      ) : currentPage === 'signin' ? (
+        <SignIn
+          onBack={() => navigateTo('home')}
+          onOpenSignUp={() => navigateTo('signup')}
+          onOpenForgotPassword={() => navigateTo('forgot-password')}
+          showToast={showToast}
+        />
+      ) : (
+        <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sf selection:bg-[#00c25a] selection:text-white">
+          {/* Navigation */}
+          <Navbar
+            onOpenAuthModal={() => setIsAuthModalOpen(true)}
+            onOpenAnnouncement={() => setAnnouncementModalOpen(true)}
+            onNavigateToSignIn={() => navigateTo('signin')}
+            onNavigateToSignUp={() => navigateTo('signup')}
+          />
+
+          {/* Main Sections Matching Screenshots */}
+          <main className="flex-1">
+            {/* Screenshot 1: Hero Section with Live WhatsApp Chat Simulator & Provision Card */}
+            <Hero
+              onOpenAuthModal={() => setIsAuthModalOpen(true)}
+              onBadgeClick={(title, desc) => showToast(`✓ ${title} — ${desc}`)}
+            />
 
         {/* Screenshot 2: Engineered For Enterprise Scale with Horizontal Accordion Matrix */}
         <EnterpriseScale
@@ -71,6 +137,8 @@ export default function App() {
 
       {/* Footer */}
       <Footer onOpenAuthModal={() => setIsAuthModalOpen(true)} />
+    </div>
+  )}
 
       {/* Interactive Meta Authentication Modal */}
       <MetaAuthModal
@@ -142,6 +210,6 @@ export default function App() {
           </button>
         </div>
       )}
-    </div>
+    </>
   );
 }

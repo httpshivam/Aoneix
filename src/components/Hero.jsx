@@ -3,6 +3,7 @@ import {
   ExternalLink,
   Check,
   Shield,
+  ShieldCheck,
   Settings,
   Zap,
   Phone,
@@ -247,60 +248,75 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
             </p>
           </div>
 
-          {/* Right Column: Provision Space Card (Matching SS 1) */}
+          {/* Right Column: Provision Space Card (Styled matching Login Form with Theme Header & Black Border) */}
           <div className="w-full lg:col-span-5 flex justify-center lg:justify-end">
-            <div className="bg-white rounded-2xl p-7 sm:p-8 shadow-xl shadow-gray-200/60 border border-gray-100 w-full max-w-full lg:max-w-md relative transition-transform hover:-translate-y-0.5 duration-200">
+            <div className="bg-white rounded-2xl border border-black shadow-2xl overflow-hidden w-full max-w-full lg:max-w-md relative transition-transform hover:-translate-y-0.5 duration-200">
 
-              {/* Card Header */}
-              <div className="flex items-center justify-between mb-2">
-                <h2 className="text-xl sm:text-2xl font-bold text-gray-900 tracking-tight">
-                  Provision Space
-                </h2>
-                <span className="text-[11px] font-semibold bg-[#e0f2fe] text-[#0284c7] px-2.5 py-1 rounded-md">
+              {/* Dark Green Gradient Header matching Login Form Theme */}
+              <div className="bg-gradient-to-r from-[#075e37] to-[#0a5c36] px-5 sm:px-7 py-5 sm:py-6 text-white flex items-center justify-between gap-3">
+                <div className="flex items-center space-x-3 sm:space-x-3.5 min-w-0">
+                  <div className="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
+                    <ShieldCheck className="w-5 h-5 text-[#86efac]" />
+                  </div>
+                  <div className="min-w-0">
+                    <h2 className="font-bold text-base sm:text-lg leading-tight text-white">
+                      Provision Space
+                    </h2>
+                    <p className="text-xs text-emerald-200 mt-0.5 leading-snug">
+                      Configure administrative<br />contexts & pipelines
+                    </p>
+                  </div>
+                </div>
+                <span className="shrink-0 whitespace-nowrap text-xs font-semibold bg-white/15 text-white border border-white/25 px-3 py-1 rounded-full backdrop-blur-xs shadow-2xs">
                   Step 1 of 2
                 </span>
               </div>
 
-              {/* Subheading */}
-              <p className="text-xs sm:text-sm text-gray-500 mb-6 leading-normal">
-                Configure administrative contexts and lock your infrastructure pipelines.
-              </p>
+              {/* Card Body containing existing content */}
+              <div className="p-6 sm:p-7">
 
-              {/* Step 1 Row */}
-              <div className="flex items-start gap-3.5 mb-6">
-                <div className="w-6 h-6 rounded-full bg-[#075e37] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 shadow-sm">
-                  1
+                {/* Context Subheading */}
+                <p className="text-xs sm:text-sm text-gray-500 mb-6 leading-relaxed">
+                  Configure administrative contexts and lock your infrastructure pipelines.
+                </p>
+
+                {/* Step 1 Row */}
+                <div className="flex items-start gap-3.5 mb-6">
+                  <div className="w-6 h-6 rounded-full bg-[#075e37] text-white flex items-center justify-center font-bold text-xs shrink-0 mt-0.5 shadow-sm">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-gray-900 leading-snug">
+                      Launch Embedded Gateway Setup
+                    </h3>
+                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                      Authorize RBSH infrastructure parameters to communicate directly with your Meta Business manager records.
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="text-sm font-semibold text-gray-900 leading-snug">
-                    Launch Embedded Gateway Setup
-                  </h3>
-                  <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                    Authorize RBSH infrastructure parameters to communicate directly with your Meta Business manager records.
+
+                {/* CTA Button: Authenticate via Meta Channels */}
+                <button
+                  onClick={onOpenAuthModal}
+                  className="w-full bg-[#00c25a] hover:bg-[#00a84e] active:scale-[0.99] text-white font-semibold text-sm sm:text-base py-3 px-6 rounded-xl shadow-md hover:shadow-lg hover:shadow-emerald-200/50 transition-all flex items-center justify-center gap-2 group cursor-pointer"
+                >
+                  <Zap className="w-4 h-4 fill-white transition-transform group-hover:scale-110" />
+                  <span>Authenticate via Meta Channels</span>
+                </button>
+
+                {/* Card Footer Subtext */}
+                <div className="text-center mt-5">
+                  <p className="text-xs text-gray-500">
+                    Already tracking parameters?{' '}
+                    <button
+                      onClick={onOpenAuthModal}
+                      className="font-semibold text-gray-800 hover:text-[#00c25a] transition-colors underline underline-offset-2 cursor-pointer"
+                    >
+                      Access Portal
+                    </button>
                   </p>
                 </div>
-              </div>
 
-              {/* CTA Button: Authenticate via Meta Channels */}
-              <button
-                onClick={onOpenAuthModal}
-                className="w-full bg-[#00c25a] hover:bg-[#00a84e] text-white font-semibold text-sm sm:text-base py-3.5 px-6 rounded-xl shadow-md hover:shadow-lg hover:shadow-emerald-200/50 transition-all flex items-center justify-center gap-2 group active:scale-[0.98]"
-              >
-                <Zap className="w-4 h-4 fill-white transition-transform group-hover:scale-110" />
-                <span>Authenticate via Meta Channels</span>
-              </button>
-
-              {/* Card Footer Subtext */}
-              <div className="text-center mt-5">
-                <p className="text-xs text-gray-500">
-                  Already tracking parameters?{' '}
-                  <button
-                    onClick={onOpenAuthModal}
-                    className="font-semibold text-gray-800 hover:text-[#00c25a] transition-colors underline underline-offset-2"
-                  >
-                    Access Portal
-                  </button>
-                </p>
               </div>
 
             </div>
@@ -313,7 +329,7 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
           {/* Floating Badge 1: Instant SDK Handshake (Top Left) */}
           <button
             onClick={() => onBadgeClick && onBadgeClick('Instant SDK Handshake', 'Latency < 45ms direct to Meta WhatsApp endpoints')}
-            className="animate-float-1 hidden md:flex absolute -top-6 -left-8 lg:-left-4 z-20 w-[228px] h-11 items-center justify-center gap-2.5 bg-[#4ed181] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-500/20 backdrop-blur-sm border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
+            className="animate-float-1 hidden md:flex absolute -top-6 -left-8 lg:-left-4 z-20 w-[228px] h-11 items-center justify-center gap-2.5 bg-[#22a45a] hover:bg-[#1d8f4e] text-white text-xs sm:text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-emerald-600/25 backdrop-blur-sm border border-white/20 hover:scale-105 active:scale-95 transition-all duration-200 cursor-pointer"
           >
             <div className="p-1 bg-white/20 rounded-md shrink-0">
               <ExternalLink className="w-4 h-4" />
@@ -370,10 +386,10 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                     <ChevronLeft className="w-5 h-5 cursor-pointer text-white/80 hover:text-white" />
                     {/* Aoneix Favicon Avatar */}
                     <div className="w-9 h-9 rounded-full overflow-hidden shrink-0 shadow-sm bg-[#163323] flex items-center justify-center">
-                      <img 
-                        src={faviconImg} 
-                        alt="Aoneix Favicon" 
-                        className="w-full h-full object-cover" 
+                      <img
+                        src={faviconImg}
+                        alt="Aoneix Favicon"
+                        className="w-full h-full object-cover"
                       />
                     </div>
                     <div>
@@ -381,8 +397,8 @@ export default function Hero({ onOpenAuthModal, onBadgeClick }) {
                         <span className="font-bold text-xs tracking-tight text-white leading-none">AONEIX</span>
                         {/* Meta WhatsApp Official Scalloped Verified Badge */}
                         <svg className="w-3.5 h-3.5 shrink-0 translate-y-[0.5px]" viewBox="0 0 24 24" fill="none">
-                          <path d="M10.52 2.44a2 2 0 0 1 2.96 0l.44.48a2 2 0 0 0 1.62.67l.65-.05a2 2 0 0 1 2.1 2.1l-.05.65a2 2 0 0 0 .67 1.62l.48.44a2 2 0 0 1 0 2.96l-.48.44a2 2 0 0 0-.67 1.62l.05.65a2 2 0 0 1-2.1 2.1l-.65-.05a2 2 0 0 0-1.62.67l-.44.48a2 2 0 0 1-2.96 0l-.44-.48a2 2 0 0 0-1.62-.67l-.65.05a2 2 0 0 1-2.1-2.1l.05-.65a2 2 0 0 0-.67-1.62l-.48-.44a2 2 0 0 1 0-2.96l.48-.44a2 2 0 0 0 .67-1.62l-.05-.65a2 2 0 0 1 2.1-2.1l.65.05a2 2 0 0 0 1.62-.67l.44-.48z" fill="#00C25A"/>
-                          <path d="M9 11l2 2 4.5-4.5" stroke="white" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M10.52 2.44a2 2 0 0 1 2.96 0l.44.48a2 2 0 0 0 1.62.67l.65-.05a2 2 0 0 1 2.1 2.1l-.05.65a2 2 0 0 0 .67 1.62l.48.44a2 2 0 0 1 0 2.96l-.48.44a2 2 0 0 0-.67 1.62l.05.65a2 2 0 0 1-2.1 2.1l-.65-.05a2 2 0 0 0-1.62.67l-.44.48a2 2 0 0 1-2.96 0l-.44-.48a2 2 0 0 0-1.62-.67l-.65.05a2 2 0 0 1-2.1-2.1l.05-.65a2 2 0 0 0-.67-1.62l-.48-.44a2 2 0 0 1 0-2.96l.48-.44a2 2 0 0 0 .67-1.62l-.05-.65a2 2 0 0 1 2.1-2.1l.65.05a2 2 0 0 0 1.62-.67l.44-.48z" fill="#00C25A" />
+                          <path d="M9 11l2 2 4.5-4.5" stroke="white" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       </div>
                       <span className="text-[10px] text-emerald-200 block mt-0.5">Verified Business</span>

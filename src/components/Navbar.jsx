@@ -3,7 +3,7 @@ import AoneixLogo from './AoneixLogo';
 import { User, Menu, X, ArrowRight, Sparkles, LogIn } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
+export default function Navbar({ onOpenAuthModal, onOpenAnnouncement, onNavigateToSignIn, onNavigateToSignUp }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isBannerDismissed, setIsBannerDismissed] = useState(false);
   const [isBannerVanishing, setIsBannerVanishing] = useState(false);
@@ -95,7 +95,10 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
             )}
 
             <button 
-              onClick={onOpenAuthModal} 
+              onClick={() => {
+                if (onNavigateToSignUp) onNavigateToSignUp();
+                else if (onOpenAuthModal) onOpenAuthModal();
+              }} 
               className="flex items-center space-x-1.5 text-gray-200 hover:text-white transition-colors font-medium text-xs group"
             >
               <User className="w-3.5 h-3.5 text-gray-300 group-hover:text-brand-primary transition-colors" />
@@ -167,7 +170,7 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
         {/* Action Button: 3D Layered Sign-In Button */}
         <div className="hidden md:flex items-center">
           <button 
-            onClick={onOpenAuthModal}
+            onClick={onNavigateToSignIn || onOpenAuthModal}
             className="btn-3d-signin group"
             aria-label="Sign in"
           >
@@ -209,7 +212,8 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement }) {
             <button 
               onClick={() => {
                 setMobileMenuOpen(false);
-                onOpenAuthModal();
+                if (onNavigateToSignIn) onNavigateToSignIn();
+                else onOpenAuthModal();
               }}
               className="btn-3d-signin w-full group"
               aria-label="Sign in"
