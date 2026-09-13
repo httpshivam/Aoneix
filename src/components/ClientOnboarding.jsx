@@ -147,11 +147,11 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
     <div className="min-h-screen bg-white text-gray-900 font-sf flex flex-col justify-between select-none">
       
       {/* Top Fixed Header with Centered Logo & Step Progress Bar */}
-      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 h-16 sm:h-18 flex items-center justify-between relative">
+      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shrink-0">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between relative">
           
-          {/* Back button or placeholder */}
-          <div className="w-24">
+          {/* Left: Back button */}
+          <div className="flex items-center z-10">
             <button
               type="button"
               onClick={() => {
@@ -165,8 +165,8 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
             </button>
           </div>
 
-          {/* Centered Brand Logo */}
-          <div className="flex items-center justify-center">
+          {/* Center: Absolute 50% Dead Center Brand Logo */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto">
             <button 
               type="button" 
               onClick={onBack} 
@@ -177,9 +177,9 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
             </button>
           </div>
 
-          {/* Step Pill Badge */}
-          <div className="w-24 flex justify-end">
-            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200">
+          {/* Right: Step Pill Badge */}
+          <div className="flex items-center justify-end z-10">
+            <span className="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs">
               Step {step} of 2
             </span>
           </div>

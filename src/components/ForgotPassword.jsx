@@ -38,12 +38,12 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
   return (
     <div className="min-h-screen lg:h-screen bg-white relative overflow-hidden flex flex-col justify-between font-sf select-none">
       
-      {/* Top Header Row matching ClientOnboarding header design */}
+      {/* Top Header Row matching ClientOnboarding header design with absolute center logo and symmetric padding */}
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shrink-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between relative">
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between relative">
           
           {/* Left: Back button */}
-          <div className="w-48 flex items-center">
+          <div className="flex items-center z-10">
             <button
               type="button"
               onClick={onBack}
@@ -54,8 +54,8 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
             </button>
           </div>
 
-          {/* Center: Exactly Centered Brand Logo */}
-          <div className="flex items-center justify-center">
+          {/* Center: Absolute 50% Dead Center Brand Logo */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto">
             <button 
               type="button" 
               onClick={onBack} 
@@ -66,14 +66,15 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
             </button>
           </div>
 
-          {/* Right: Login Link */}
-          <div className="w-48 flex justify-end items-center">
+          {/* Right: Sleek Pill Login Link */}
+          <div className="flex items-center justify-end gap-2 z-10">
+            <span className="hidden sm:inline text-xs text-gray-500 font-medium">Remember password?</span>
             <button
               type="button"
               onClick={onOpenSignIn}
-              className="text-xs sm:text-sm font-semibold text-gray-700 hover:text-emerald-700 transition-colors"
+              className="text-xs font-semibold px-3 py-1 rounded-full bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 transition-colors"
             >
-              Remember password? <span className="text-emerald-700 font-bold underline">Login</span>
+              Login
             </button>
           </div>
         </div>
