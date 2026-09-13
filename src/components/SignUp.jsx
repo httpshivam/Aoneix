@@ -3,7 +3,7 @@ import AoneixLogo from './AoneixLogo';
 import { Eye, EyeOff, ArrowLeft, Check, X, Sparkles, ChevronDown } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function SignUp({ onBack, onOpenSignIn, showToast }) {
+export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToast }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [businessEmail, setBusinessEmail] = useState('');
@@ -31,30 +31,37 @@ export default function SignUp({ onBack, onOpenSignIn, showToast }) {
       } catch (_) {}
 
       if (showToast) {
-        showToast(`🎉 Free trial account created for ${firstName}! Check ${businessEmail} for verification.`);
+        showToast(`🎉 Free trial account created for ${firstName}! Personalising your setup...`);
       }
       setTimeout(() => {
-        if (onOpenSignIn) onOpenSignIn();
-      }, 1500);
-    }, 900);
+        if (onOpenOnboarding) onOpenOnboarding();
+        else if (onOpenSignIn) onOpenSignIn();
+      }, 1000);
+    }, 800);
   };
 
   const handleGoogleSignUp = () => {
     if (showToast) showToast('Opening Google OAuth sign-up gateway...');
     setTimeout(() => {
       try { confetti({ particleCount: 35, spread: 55, origin: { y: 0.6 } }); } catch (_) {}
-      if (showToast) showToast('Google account linked! Setting up your Aoneix workspace...');
-      setTimeout(() => { if (onOpenSignIn) onOpenSignIn(); }, 1200);
-    }, 800);
+      if (showToast) showToast('Google account linked! Setting up onboarding...');
+      setTimeout(() => { 
+        if (onOpenOnboarding) onOpenOnboarding();
+        else if (onOpenSignIn) onOpenSignIn(); 
+      }, 900);
+    }, 700);
   };
 
   const handleFacebookSignUp = () => {
     if (showToast) showToast('Connecting with Facebook Meta API OAuth gateway...');
     setTimeout(() => {
       try { confetti({ particleCount: 35, spread: 55, origin: { y: 0.6 } }); } catch (_) {}
-      if (showToast) showToast('Facebook Meta account linked! Provisioning trial workspace...');
-      setTimeout(() => { if (onOpenSignIn) onOpenSignIn(); }, 1200);
-    }, 800);
+      if (showToast) showToast('Facebook Meta account linked! Setting up onboarding...');
+      setTimeout(() => { 
+        if (onOpenOnboarding) onOpenOnboarding();
+        else if (onOpenSignIn) onOpenSignIn(); 
+      }, 900);
+    }, 700);
   };
 
   return (

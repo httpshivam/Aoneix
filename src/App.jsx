@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import ForgotPassword from './components/ForgotPassword';
+import ClientOnboarding from './components/ClientOnboarding';
 import MetaAuthModal from './components/MetaAuthModal';
 import AskQuestionModal from './components/AskQuestionModal';
 import CheckoutModal from './components/CheckoutModal';
@@ -16,6 +17,7 @@ import { CheckCircle2, Sparkles, X } from 'lucide-react';
 
 export default function App() {
   const [currentPage, setCurrentPage] = useState(() => {
+    if (window.location.hash === '#onboarding' || window.location.hash === '#onboard') return 'onboarding';
     if (window.location.hash === '#forgot-password' || window.location.hash === '#forgot') return 'forgot-password';
     if (window.location.hash === '#signup' || window.location.hash === '#register') return 'signup';
     if (window.location.hash === '#signin' || window.location.hash === '#login') return 'signin';
@@ -29,7 +31,9 @@ export default function App() {
 
   useEffect(() => {
     const handleHashChange = () => {
-      if (window.location.hash === '#forgot-password' || window.location.hash === '#forgot') {
+      if (window.location.hash === '#onboarding' || window.location.hash === '#onboard') {
+        setCurrentPage('onboarding');
+      } else if (window.location.hash === '#forgot-password' || window.location.hash === '#forgot') {
         setCurrentPage('forgot-password');
       } else if (window.location.hash === '#signup' || window.location.hash === '#register') {
         setCurrentPage('signup');
@@ -45,7 +49,10 @@ export default function App() {
 
   const navigateTo = (page) => {
     setCurrentPage(page);
-    if (page === 'forgot-password') {
+    if (page === 'onboarding') {
+      window.location.hash = '#onboarding';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else if (page === 'forgot-password') {
       window.location.hash = '#forgot-password';
       window.scrollTo({ top: 0, behavior: 'smooth' });
     } else if (page === 'signup') {
@@ -78,7 +85,13 @@ export default function App() {
 
   return (
     <>
-      {currentPage === 'forgot-password' ? (
+      {currentPage === 'onboarding' ? (
+        <ClientOnboarding
+          onBack={() => navigateTo('home')}
+          onComplete={() => navigateTo('home')}
+          showToast={showToast}
+        />
+      ) : currentPage === 'forgot-password' ? (
         <ForgotPassword
           onBack={() => navigateTo('home')}
           onOpenSignIn={() => navigateTo('signin')}
@@ -89,6 +102,7 @@ export default function App() {
         <SignUp
           onBack={() => navigateTo('home')}
           onOpenSignIn={() => navigateTo('signin')}
+          onOpenOnboarding={() => navigateTo('onboarding')}
           showToast={showToast}
         />
       ) : currentPage === 'signin' ? (
