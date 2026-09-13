@@ -67,33 +67,49 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
   return (
     <div className="min-h-screen lg:h-screen bg-white relative overflow-hidden flex flex-col justify-between font-sf select-none">
       
-      {/* Top Header Row with Logo & Return Link */}
-      <header className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-8 pt-3 sm:pt-4 pb-1 flex items-center justify-between shrink-0">
-        <button 
-          onClick={onBack}
-          className="flex items-center gap-2 group focus:outline-none"
-          title="Return to Aoneix Home"
-        >
-          <AoneixLogo className="h-7 sm:h-8 transition-transform group-hover:scale-105" />
-        </button>
+      {/* Top Header Row matching ClientOnboarding header design */}
+      <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shrink-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between relative">
+          
+          {/* Left: Back button */}
+          <div className="w-48 flex items-center">
+            <button
+              type="button"
+              onClick={onBack}
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-950 transition-colors py-1 group"
+            >
+              <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
+              <span>Back</span>
+            </button>
+          </div>
 
-        <div className="flex items-center gap-2.5 sm:gap-3">
-          <button
-            type="button"
-            onClick={onOpenSignIn}
-            className="text-xs font-semibold text-gray-700 hover:text-emerald-700 transition-colors"
-          >
-            Already have an account? <span className="text-emerald-700 font-bold underline">Login</span>
-          </button>
+          {/* Center: Exactly Centered Brand Logo */}
+          <div className="flex items-center justify-center">
+            <button 
+              type="button" 
+              onClick={onBack} 
+              className="focus:outline-none transition-transform hover:scale-105"
+              title="Return to Home"
+            >
+              <AoneixLogo className="h-7 sm:h-8" />
+            </button>
+          </div>
 
-          <button
-            type="button"
-            onClick={onBack}
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-gray-600 hover:text-gray-950 bg-white hover:bg-gray-50 border border-gray-200 px-3 py-1 rounded-full shadow-2xs transition-all"
-          >
-            <ArrowLeft className="w-3 h-3" />
-            <span>Back to website</span>
-          </button>
+          {/* Right: Login Link */}
+          <div className="w-48 flex justify-end items-center">
+            <button
+              type="button"
+              onClick={onOpenSignIn}
+              className="text-xs sm:text-sm font-semibold text-gray-700 hover:text-emerald-700 transition-colors"
+            >
+              Already have an account? <span className="text-emerald-700 font-bold underline">Login</span>
+            </button>
+          </div>
+        </div>
+
+        {/* Thin Brand Accent Line */}
+        <div className="w-full h-1 bg-gray-100">
+          <div className="h-full bg-gradient-to-r from-[#00c25a] to-[#075e37] w-full" />
         </div>
       </header>
 
