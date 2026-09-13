@@ -40,7 +40,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
       
       {/* Top Header Row matching ClientOnboarding header design with absolute center logo and symmetric padding */}
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shrink-0">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between relative">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 h-14 sm:h-16 flex items-center justify-between relative">
           
           {/* Left: Back button */}
           <div className="flex items-center z-10">
@@ -86,7 +86,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
       </header>
 
       {/* Main Center Area: Centered Forgot Password Card */}
-      <main className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-2 sm:py-3 flex-1 flex items-center justify-center my-auto">
+      <main className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-5 sm:py-7 flex-1 flex items-center justify-center">
         
         {/* Centered Forgot Password Card matching Theme & Screenshot */}
         <div className="w-full max-w-[400px]">
@@ -243,8 +243,10 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
 
       </main>
 
-      {/* Outer Bottom Spacer */}
-      <div className="h-1 sm:h-2" />
+      {/* Outer Bottom Footer matching ClientOnboarding */}
+      <footer className="py-3 sm:py-4 border-t border-gray-100 text-center text-[11px] text-gray-400">
+        Aoneix Cloud Workspace • Protected by 256-bit SSL encryption
+      </footer>
 
     </div>
   );

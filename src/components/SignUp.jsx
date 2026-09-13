@@ -3,7 +3,7 @@ import AoneixLogo from './AoneixLogo';
 import { Eye, EyeOff, ArrowLeft, Check, X, Sparkles, ChevronDown } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
-export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToast }) {
+export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToast, triggerLoader }) {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [businessEmail, setBusinessEmail] = useState('');
@@ -20,6 +20,23 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
 
     if (!firstName.trim() || !lastName.trim() || !businessEmail.trim() || !password.trim() || !phone.trim()) {
       if (showToast) showToast('Please fill in all required fields.');
+      return;
+    }
+
+    if (triggerLoader) {
+      setIsLoading(true);
+      triggerLoader('signup-success', () => {
+        setIsLoading(false);
+        try {
+          confetti({ particleCount: 50, spread: 70, origin: { y: 0.5 } });
+        } catch (_) {}
+
+        if (showToast) {
+          showToast(`🎉 Free trial account created for ${firstName}! Personalising your setup...`);
+        }
+        if (onOpenOnboarding) onOpenOnboarding();
+        else if (onOpenSignIn) onOpenSignIn();
+      });
       return;
     }
 
@@ -41,6 +58,15 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
   };
 
   const handleGoogleSignUp = () => {
+    if (triggerLoader) {
+      triggerLoader('signup-success', () => {
+        try { confetti({ particleCount: 35, spread: 55, origin: { y: 0.6 } }); } catch (_) {}
+        if (showToast) showToast('Google account linked! Setting up onboarding...');
+        if (onOpenOnboarding) onOpenOnboarding();
+        else if (onOpenSignIn) onOpenSignIn();
+      });
+      return;
+    }
     if (showToast) showToast('Opening Google OAuth sign-up gateway...');
     setTimeout(() => {
       try { confetti({ particleCount: 35, spread: 55, origin: { y: 0.6 } }); } catch (_) {}
@@ -53,6 +79,15 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
   };
 
   const handleFacebookSignUp = () => {
+    if (triggerLoader) {
+      triggerLoader('signup-success', () => {
+        try { confetti({ particleCount: 35, spread: 55, origin: { y: 0.6 } }); } catch (_) {}
+        if (showToast) showToast('Facebook Meta account linked! Setting up onboarding...');
+        if (onOpenOnboarding) onOpenOnboarding();
+        else if (onOpenSignIn) onOpenSignIn();
+      });
+      return;
+    }
     if (showToast) showToast('Connecting with Facebook Meta API OAuth gateway...');
     setTimeout(() => {
       try { confetti({ particleCount: 35, spread: 55, origin: { y: 0.6 } }); } catch (_) {}
@@ -65,11 +100,11 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
   };
 
   return (
-    <div className="min-h-screen lg:h-screen bg-white relative overflow-hidden flex flex-col justify-between font-sf select-none">
+    <div className="min-h-screen bg-white relative flex flex-col justify-between font-sf select-none">
       
       {/* Top Header Row matching ClientOnboarding header design with absolute center logo and symmetric padding */}
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shrink-0">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between relative">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 h-14 sm:h-16 flex items-center justify-between relative">
           
           {/* Left: Back button */}
           <div className="flex items-center z-10">
@@ -115,7 +150,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
       </header>
 
       {/* Main Center Area: Left Benefits + Right Sign Up Card */}
-      <main className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 py-1 sm:py-2 flex-1 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 lg:gap-10 my-auto">
+      <main className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-5 sm:py-7 flex-1 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 lg:gap-10">
         
         {/* Left Side: Enterprise Benefits & Social Proof (Hidden on mobile, visible on tablet md: & laptop lg:) */}
         <div className="hidden md:flex flex-1 w-full flex-col justify-center max-w-[500px] lg:pl-2">
@@ -133,7 +168,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                 <Check className="w-2.5 h-2.5 stroke-[3]" />
               </div>
               <p className="text-xs sm:text-[13px] text-gray-700 font-medium leading-snug">
-                Run high converting campaigns on: WhatsApp, RCS, SMS, TikTok, Calls and more
+                Run high converting campaigns on: WhatsApp, RCS, SMS, Calls and more
               </p>
             </div>
 
@@ -492,8 +527,10 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
 
       </main>
 
-      {/* Outer Bottom Spacer */}
-      <div className="h-1 sm:h-2" />
+      {/* Outer Bottom Footer matching ClientOnboarding */}
+      <footer className="py-3 sm:py-4 border-t border-gray-100 text-center text-[11px] text-gray-400">
+        Aoneix Cloud Workspace • Protected by 256-bit SSL encryption
+      </footer>
 
     </div>
   );

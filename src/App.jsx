@@ -13,6 +13,7 @@ import ClientOnboarding from './components/ClientOnboarding';
 import MetaAuthModal from './components/MetaAuthModal';
 import AskQuestionModal from './components/AskQuestionModal';
 import CheckoutModal from './components/CheckoutModal';
+import WebsiteRefreshLoader from './components/WebsiteRefreshLoader';
 import { CheckCircle2, Sparkles, X } from 'lucide-react';
 
 export default function App() {
@@ -28,6 +29,17 @@ export default function App() {
   const [selectedPlanForCheckout, setSelectedPlanForCheckout] = useState(null);
   const [toastMessage, setToastMessage] = useState(null);
   const [announcementModalOpen, setAnnouncementModalOpen] = useState(false);
+  const [loaderConfig, setLoaderConfig] = useState(() => {
+    const hash = window.location.hash;
+    let initialMode = 'default';
+    if (hash === '#signin' || hash === '#login') initialMode = 'signin';
+    else if (hash === '#signup' || hash === '#register') initialMode = 'signup';
+    return {
+      isOpen: true,
+      mode: initialMode,
+      key: 1,
+    };
+  });
 
   useEffect(() => {
     const handleHashChange = () => {
@@ -47,7 +59,22 @@ export default function App() {
     return () => window.removeEventListener('hashchange', handleHashChange);
   }, []);
 
-  const navigateTo = (page) => {
+  const navigateTo = (page, options = {}) => {
+    const { showLoader = false, loaderMode = null } = options;
+
+    // Automatically trigger 3-second loader when clicking or navigating to 'signin' or 'signup',
+    // or when explicitly requested
+    const shouldShowLoader = showLoader || page === 'signin' || page === 'signup';
+
+    if (shouldShowLoader) {
+      const mode = loaderMode || (page === 'signin' ? 'signin' : page === 'signup' ? 'signup' : 'default');
+      setLoaderConfig({
+        isOpen: true,
+        mode,
+        key: Date.now(),
+      });
+    }
+
     setCurrentPage(page);
     if (page === 'onboarding') {
       window.location.hash = '#onboarding';
@@ -64,6 +91,19 @@ export default function App() {
     } else {
       window.location.hash = '';
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const triggerCustomLoader = (mode, onFinished) => {
+    setLoaderConfig({
+      isOpen: true,
+      mode: mode || 'default',
+      key: Date.now(),
+    });
+    if (onFinished) {
+      setTimeout(() => {
+        onFinished();
+      }, 3000);
     }
   };
 
@@ -85,6 +125,16 @@ export default function App() {
 
   return (
     <>
+      {/* 3-Second Creative Liquid Crystal Orb Website Loader */}
+      {loaderConfig.isOpen && (
+        <WebsiteRefreshLoader
+          key={loaderConfig.key}
+          duration={3000}
+          mode={loaderConfig.mode}
+          onComplete={() => setLoaderConfig(prev => ({ ...prev, isOpen: false }))}
+        />
+      )}
+
       {currentPage === 'onboarding' ? (
         <ClientOnboarding
           onBack={() => navigateTo('home')}
@@ -104,6 +154,7 @@ export default function App() {
           onOpenSignIn={() => navigateTo('signin')}
           onOpenOnboarding={() => navigateTo('onboarding')}
           showToast={showToast}
+          triggerLoader={triggerCustomLoader}
         />
       ) : currentPage === 'signin' ? (
         <SignIn
@@ -111,6 +162,7 @@ export default function App() {
           onOpenSignUp={() => navigateTo('signup')}
           onOpenForgotPassword={() => navigateTo('forgot-password')}
           showToast={showToast}
+          triggerLoader={triggerCustomLoader}
         />
       ) : (
         <div className="min-h-screen flex flex-col bg-white text-gray-900 font-sf selection:bg-[#00c25a] selection:text-white">

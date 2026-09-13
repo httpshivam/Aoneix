@@ -446,3 +446,168 @@
   min-height: 0;
   overflow: hidden;
 }
+
+/* ==========================================================
+   Creative 3D Liquid Crystal Orb Loader Animations
+   ========================================================== */
+@keyframes orb-spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes orb-spin-reverse {
+  0% {
+    transform: rotate(360deg) scale(1);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes orb-liquid-morph-1 {
+  0%, 100% {
+    border-radius: 42% 58% 70% 30% / 45% 45% 55% 55%;
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  33% {
+    border-radius: 70% 30% 46% 54% / 30% 29% 71% 70%;
+    transform: translate(-8%, 6%) rotate(120deg) scale(1.08);
+  }
+  66% {
+    border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
+    transform: translate(6%, -8%) rotate(240deg) scale(0.94);
+  }
+}
+
+@keyframes orb-liquid-morph-2 {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transform: translate(0, 0) rotate(360deg) scale(1);
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    transform: translate(8%, 10%) rotate(180deg) scale(1.14);
+  }
+}
+
+@keyframes orb-float-pulse {
+  0%, 100% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-8px) scale(1.015);
+  }
+}
+
+@keyframes orb-glow-breathe {
+  0%, 100% {
+    opacity: 0.5;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.85;
+    transform: scale(1.08);
+  }
+}
+
+@keyframes orb-highlight-sweep {
+  0% {
+    opacity: 0.4;
+    transform: rotate(-15deg) scale(0.98);
+  }
+  50% {
+    opacity: 0.85;
+    transform: rotate(8deg) scale(1.04);
+  }
+  100% {
+    opacity: 0.4;
+    transform: rotate(-15deg) scale(0.98);
+  }
+}
+
+.animate-orb-spin {
+  animation: orb-spin-slow 14s linear infinite;
+}
+
+.animate-orb-spin-reverse {
+  animation: orb-spin-reverse 10s ease-in-out infinite;
+}
+
+.animate-orb-morph-1 {
+  animation: orb-liquid-morph-1 6.5s ease-in-out infinite;
+}
+
+.animate-orb-morph-2 {
+  animation: orb-liquid-morph-2 8s ease-in-out infinite;
+}
+
+.animate-orb-float {
+  animation: orb-float-pulse 3.5s ease-in-out infinite;
+}
+
+.animate-orb-glow {
+  animation: orb-glow-breathe 3s ease-in-out infinite;
+}
+
+.animate-orb-highlight {
+  animation: orb-highlight-sweep 4.2s ease-in-out infinite;
+}
+
+/* Red / Crimson Glowing Aura for Failed Status Orb */
+@keyframes orb-glow-crimson {
+  0%, 100% {
+    opacity: 0.35;
+    transform: scale(0.96);
+  }
+  50% {
+    opacity: 0.7;
+    transform: scale(1.12);
+  }
+}
+
+.animate-orb-glow-crimson {
+  animation: orb-glow-crimson 3s ease-in-out infinite;
+}
+
+/* Modal Spring-in Animation for Popups */
+@keyframes modal-spring-in {
+  0% {
+    opacity: 0;
+    transform: scale(0.9) translateY(14px);
+  }
+  70% {
+    transform: scale(1.02) translateY(-2px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-modal-spring {
+  animation: modal-spring-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Subtle Gentle Warning Shake */
+@keyframes warning-shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  20%, 60% {
+    transform: translateX(-4px) rotate(-1deg);
+  }
+  40%, 80% {
+    transform: translateX(4px) rotate(1deg);
+  }
+}
+
+.animate-warning-shake {
+  animation: warning-shake 0.5s ease-in-out;
+}

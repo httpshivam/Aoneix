@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import AoneixLogo from './AoneixLogo';
-import { Eye, EyeOff, ArrowLeft, Check, Mail, KeyRound, Smartphone, ShieldCheck, X } from 'lucide-react';
+import { Eye, EyeOff, ArrowLeft, Check, Mail, KeyRound, Smartphone, ShieldCheck, X, Sparkles, AlertTriangle } from 'lucide-react';
 import loginPageImg from '../assets/login_page_img.png';
-import logoOverlayImg from '../assets/logo_overlay.png';
 import confetti from 'canvas-confetti';
+import LoginStatusModal from './LoginStatusModal';
 
-export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, showToast }) {
+export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, showToast, triggerLoader }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [clientId, setClientId] = useState('');
@@ -15,6 +15,14 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
   const [isOtpMode, setIsOtpMode] = useState(false);
   const [otpCode, setOtpCode] = useState(['', '', '', '', '', '']);
   const [otpSent, setOtpSent] = useState(false);
+
+  // Login Success & Login Failed Popup state
+  const [statusModal, setStatusModal] = useState({
+    isOpen: false,
+    type: 'success', // 'success' | 'failed'
+    errorMessage: '',
+    email: '',
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -27,12 +35,22 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
       setIsLoading(true);
       setTimeout(() => {
         setIsLoading(false);
-        try {
-          confetti({ particleCount: 40, spread: 60, origin: { y: 0.5 } });
-        } catch (_) {}
-        if (showToast) showToast('OTP Verified! Welcome to Aoneix Enterprise.');
-        setTimeout(() => { if (onBack) onBack(); }, 1000);
-      }, 700);
+        // Simulate failed OTP if all 0s or 1s
+        if (fullOtp === '000000' || fullOtp === '111111') {
+          setStatusModal({
+            isOpen: true,
+            type: 'failed',
+            errorMessage: 'The 6-digit verification code you entered has expired or is invalid. Please request a new OTP.',
+            email: email.trim() || 'user@company.com'
+          });
+          return;
+        }
+        setStatusModal({
+          isOpen: true,
+          type: 'success',
+          email: email.trim() || 'enterprise@aoneix.io'
+        });
+      }, 450);
       return;
     }
 
@@ -44,43 +62,53 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
     setIsLoading(true);
     setTimeout(() => {
       setIsLoading(false);
-      try {
-        confetti({ particleCount: 40, spread: 60, origin: { y: 0.5 } });
-      } catch (_) {}
-
-      if (showToast) {
-        showToast(`Welcome back, ${email.split('@')[0]}! Logged in successfully.`);
+      // If user inputs 'wrong' or 'fail' or under 4 chars: trigger Login Failed Popup
+      if (
+        password.toLowerCase() === 'wrong' || 
+        password.toLowerCase() === 'fail' || 
+        password.length < 4 ||
+        email.toLowerCase().includes('fail')
+      ) {
+        setStatusModal({
+          isOpen: true,
+          type: 'failed',
+          errorMessage: 'The email or password you entered is incorrect. Please verify your credentials and try again.',
+          email: email.trim()
+        });
+        return;
       }
-      setTimeout(() => {
-        if (onBack) onBack();
-      }, 1000);
-    }, 700);
+
+      // Successful login popup
+      setStatusModal({
+        isOpen: true,
+        type: 'success',
+        email: email.trim()
+      });
+    }, 450);
   };
 
   const handleFacebookLogin = () => {
-    if (showToast) {
-      showToast('Connecting with Facebook Meta API OAuth gateway...');
-    }
+    setIsLoading(true);
     setTimeout(() => {
-      try {
-        confetti({ particleCount: 30, spread: 50, origin: { y: 0.6 } });
-      } catch (_) {}
-      if (showToast) showToast('Facebook Meta account authenticated successfully!');
-      setTimeout(() => { if (onBack) onBack(); }, 1000);
-    }, 800);
+      setIsLoading(false);
+      setStatusModal({
+        isOpen: true,
+        type: 'success',
+        email: 'facebook.user@aoneix.io'
+      });
+    }, 400);
   };
 
   const handleGoogleLogin = () => {
-    if (showToast) {
-      showToast('Opening Google OAuth authentication dialog...');
-    }
+    setIsLoading(true);
     setTimeout(() => {
-      try {
-        confetti({ particleCount: 30, spread: 50, origin: { y: 0.6 } });
-      } catch (_) {}
-      if (showToast) showToast('Google account verified! Logging into Aoneix Workspace.');
-      setTimeout(() => { if (onBack) onBack(); }, 1000);
-    }, 800);
+      setIsLoading(false);
+      setStatusModal({
+        isOpen: true,
+        type: 'success',
+        email: 'google.workspace@aoneix.io'
+      });
+    }, 400);
   };
 
   const handleForgotPassword = () => {
@@ -112,23 +140,11 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
   };
 
   return (
-    <div className="min-h-screen lg:h-screen bg-white relative overflow-hidden flex flex-col justify-between font-sf select-none">
-      
-      {/* Background Brand Logo Overlay */}
-      <div 
-        className="absolute inset-0 lg:inset-auto lg:-left-12 lg:top-1/2 lg:-translate-y-[46%] lg:-translate-x-[10%] w-full h-full lg:w-[660px] lg:h-auto pointer-events-none z-0 select-none overflow-hidden transition-all"
-        aria-hidden="true"
-      >
-        <img 
-          src={logoOverlayImg} 
-          alt="Aoneix Brand Shape Overlay" 
-          className="w-full h-full object-cover object-center opacity-75 sm:opacity-85 lg:opacity-90 lg:w-full lg:h-auto lg:object-contain scale-105 sm:scale-100"
-        />
-      </div>
+    <div className="min-h-screen bg-white relative flex flex-col justify-between font-sf select-none">
 
       {/* Top Header Row matching ClientOnboarding header design with absolute center logo and symmetric padding */}
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shrink-0">
-        <div className="max-w-6xl mx-auto px-4 sm:px-8 h-14 sm:h-16 flex items-center justify-between relative">
+        <div className="w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 h-14 sm:h-16 flex items-center justify-between relative">
           
           {/* Left: Back button */}
           <div className="flex items-center z-10">
@@ -174,7 +190,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
       </header>
 
       {/* Main Center Area: Side-by-Side Left Illustration & Right Login Card */}
-      <main className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-8 py-1 sm:py-2 flex-1 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 lg:gap-10 my-auto">
+      <main className="relative z-10 w-full max-w-5xl mx-auto px-4 sm:px-6 md:px-8 py-5 sm:py-7 flex-1 flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 lg:gap-10">
         
         {/* Left Side: Illustration from login_page_img.png (Hidden on mobile, visible on tablet & laptop) */}
         <div className="hidden md:flex flex-1 w-full items-center justify-center lg:justify-start lg:pl-4">
@@ -453,8 +469,39 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                 </button>
               </div>
 
+              {/* Quick Demo Preview Pills for User */}
+              <div className="flex items-center justify-center gap-2 pt-2 mt-1 border-t border-gray-100">
+                <button
+                  type="button"
+                  onClick={() => setStatusModal({
+                    isOpen: true,
+                    type: 'success',
+                    email: email.trim() || 'shivam@aoneix.com'
+                  })}
+                  className="px-2.5 py-1 text-[10.5px] font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-full transition-colors flex items-center gap-1 cursor-pointer"
+                  title="Click to preview Login Successful popup"
+                >
+                  <Sparkles className="w-3 h-3 text-[#00c25a]" />
+                  <span>Preview Success</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setStatusModal({
+                    isOpen: true,
+                    type: 'failed',
+                    errorMessage: 'The email or password you entered is incorrect. Please verify your credentials and try again.',
+                    email: email.trim() || 'shivam@aoneix.com'
+                  })}
+                  className="px-2.5 py-1 text-[10.5px] font-semibold text-rose-800 bg-rose-50 hover:bg-rose-100 border border-rose-200 rounded-full transition-colors flex items-center gap-1 cursor-pointer"
+                  title="Click to preview Login Failed popup"
+                >
+                  <X className="w-3 h-3 text-rose-600" />
+                  <span>Preview Failed</span>
+                </button>
+              </div>
+
               {/* Don't have an account? Sign Up */}
-              <div className="text-center text-xs text-gray-600 pt-0.5">
+              <div className="text-center text-xs text-gray-600 pt-1">
                 <span>Don't have an account? </span>
                 <button
                   type="button"
@@ -478,8 +525,28 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
 
       </main>
 
-      {/* Outer Bottom Spacer for visual balance */}
-      <div className="h-1 sm:h-2" />
+      {/* Outer Bottom Footer matching ClientOnboarding */}
+      <footer className="py-3 sm:py-4 border-t border-gray-100 text-center text-[11px] text-gray-400">
+        Aoneix Cloud Workspace • Protected by 256-bit SSL encryption
+      </footer>
+
+      {/* Login Successful & Login Failed Status Modal */}
+      <LoginStatusModal
+        isOpen={statusModal.isOpen}
+        type={statusModal.type}
+        userEmail={statusModal.email || email || 'user@company.com'}
+        errorMessage={statusModal.errorMessage}
+        onClose={() => setStatusModal(prev => ({ ...prev, isOpen: false }))}
+        onContinue={() => {
+          setStatusModal(prev => ({ ...prev, isOpen: false }));
+          if (showToast) showToast(`Welcome back, ${email ? email.split('@')[0] : 'User'}! Logged in successfully.`);
+          if (onBack) onBack();
+        }}
+        onResetPassword={() => {
+          setStatusModal(prev => ({ ...prev, isOpen: false }));
+          if (onOpenForgotPassword) onOpenForgotPassword();
+        }}
+      />
 
     </div>
   );

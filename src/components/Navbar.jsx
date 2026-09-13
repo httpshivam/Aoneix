@@ -208,13 +208,13 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement, onNavigate
               </a>
             ))}
           </div>
-          <div className="pt-3 border-t border-gray-100 flex flex-col items-center">
+          <div className="pt-3 border-t border-gray-100 flex flex-col items-center gap-2">
             <button 
               onClick={() => {
                 setMobileMenuOpen(false);
                 if (onNavigateToSignIn) onNavigateToSignIn();
                 else onOpenAuthModal();
-              }}
+              }} 
               className="btn-3d-signin w-full group"
               aria-label="Sign in"
             >
@@ -222,6 +222,18 @@ export default function Navbar({ onOpenAuthModal, onOpenAnnouncement, onNavigate
                 <LogIn className="w-4 h-4 text-[#042e18] stroke-[2.2] transition-transform duration-200 group-hover:translate-x-0.5" />
                 <span>Sign in</span>
               </div>
+            </button>
+            <button 
+              onClick={() => {
+                setMobileMenuOpen(false);
+                if (onNavigateToSignUp) onNavigateToSignUp();
+                else onOpenAuthModal();
+              }} 
+              className="w-full py-2.5 px-4 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-800 border border-emerald-200 font-semibold text-xs flex items-center justify-center gap-1.5 transition-colors shadow-2xs"
+              aria-label="Sign up"
+            >
+              <User className="w-3.5 h-3.5 text-emerald-700" />
+              <span>Signup / Create Account</span>
             </button>
           </div>
         </div>
