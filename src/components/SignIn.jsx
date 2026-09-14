@@ -306,8 +306,8 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                     >
                       <div
                         className={`w-3.5 h-3.5 rounded-[3px] transition-colors flex items-center justify-center ${rememberMe
-                            ? 'bg-[#00c25a] text-white'
-                            : 'border border-gray-300 bg-white'
+                          ? 'bg-[#00c25a] text-white'
+                          : 'border border-gray-300 bg-white'
                           }`}
                       >
                         {rememberMe && <Check className="w-2.5 h-2.5 stroke-[3]" />}
