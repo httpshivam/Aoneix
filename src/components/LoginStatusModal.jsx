@@ -52,14 +52,14 @@ export default function LoginStatusModal({
 
   return (
     <div 
-      className="fixed inset-0 z-[99999] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-[99999] flex items-center justify-center p-3 sm:p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-200"
       onClick={onClose}
       aria-modal="true"
       role="dialog"
     >
       {/* Modal Card Container with black outline and rounded-2xl matching login/signup forms */}
       <div 
-        className={`relative w-full max-w-[390px] rounded-2xl p-6 sm:p-7 overflow-hidden bg-white border border-black shadow-2xl transition-all animate-modal-spring ${
+        className={`relative w-full max-w-[360px] sm:max-w-[390px] rounded-2xl p-4.5 sm:p-6 overflow-hidden bg-white border border-black shadow-2xl transition-all animate-modal-spring ${
           !isSuccess ? 'animate-warning-shake' : ''
         }`}
         onClick={(e) => e.stopPropagation()}
@@ -77,21 +77,21 @@ export default function LoginStatusModal({
         <button
           type="button"
           onClick={onClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition-colors z-20"
+          className="absolute top-3.5 right-3.5 text-gray-400 hover:text-gray-700 p-1 rounded-full hover:bg-gray-100 transition-colors z-20 cursor-pointer"
           aria-label="Close dialog"
         >
           <X className="w-4 h-4" />
         </button>
 
         {/* =========================================================
-            3D Liquid Crystal Orb (Like website loader, tailored for status)
+            3D Liquid Crystal Orb (Responsive size: 62px mobile / 72px desktop)
             ========================================================= */}
-        <div className="relative flex flex-col items-center justify-center pt-1 pb-2">
+        <div className="relative flex flex-col items-center justify-center pt-0.5 pb-1 sm:pb-2">
           
           <div className="relative flex items-center justify-center animate-orb-float">
             {/* Radiant Ambient Aura */}
             <div 
-              className="absolute w-20 h-20 rounded-full pointer-events-none animate-orb-glow"
+              className="absolute w-16 sm:w-20 h-16 sm:h-20 rounded-full pointer-events-none animate-orb-glow"
               style={{
                 background: isSuccess
                   ? 'radial-gradient(circle, rgba(0, 194, 90, 0.28) 0%, rgba(16, 185, 129, 0.18) 45%, rgba(132, 204, 22, 0.1) 65%, transparent 75%)'
@@ -100,9 +100,9 @@ export default function LoginStatusModal({
               }}
             />
 
-            {/* Glass Orb Shell (72px) */}
+            {/* Glass Orb Shell (62px on mobile / 72px on desktop) */}
             <div 
-              className={`w-[72px] h-[72px] rounded-full relative overflow-hidden flex items-center justify-center border border-white/90 ${
+              className={`w-[62px] h-[62px] sm:w-[72px] sm:h-[72px] rounded-full relative overflow-hidden flex items-center justify-center border border-white/90 ${
                 isSuccess
                   ? 'shadow-[0_12px_28px_-6px_rgba(0,194,90,0.38),0_4px_12px_-2px_rgba(14,165,233,0.22)]'
                   : 'shadow-[0_12px_28px_-6px_rgba(225,29,72,0.42),0_4px_12px_-2px_rgba(249,115,22,0.25)]'
@@ -131,7 +131,7 @@ export default function LoginStatusModal({
 
               {/* 2. Deep Fluid Swirling Liquid Active Mesh (morphing blobs) */}
               <div 
-                className="absolute inset-0 rounded-full filter blur-[8px] pointer-events-none opacity-95 overflow-hidden"
+                className="absolute inset-0 rounded-full filter blur-[7px] pointer-events-none opacity-95 overflow-hidden"
                 style={{
                   WebkitMaskImage: '-webkit-radial-gradient(white, black)',
                   maskImage: 'radial-gradient(white, black)',
@@ -140,17 +140,14 @@ export default function LoginStatusModal({
               >
                 {isSuccess ? (
                   <>
-                    {/* Oceanic Emerald/Teal Blob */}
                     <div 
                       className="absolute top-[8%] left-[12%] w-[75%] h-[75%] bg-gradient-to-br from-[#0f766e] via-[#0284c7] to-[#042f2e] animate-orb-morph-1 animate-orb-spin"
                       style={{ mixBlendMode: 'multiply' }}
                     />
-                    {/* Vibrant Lime Blob */}
                     <div 
                       className="absolute bottom-[5%] right-[8%] w-[85%] h-[85%] bg-gradient-to-tr from-[#84cc16] via-[#22c55e] to-[#10b981] animate-orb-morph-2 animate-orb-spin-reverse"
                       style={{ mixBlendMode: 'normal' }}
                     />
-                    {/* Chartreuse Core Swirl */}
                     <div 
                       className="absolute top-[35%] left-[25%] w-[60%] h-[60%] bg-[#a3e635] rounded-full animate-orb-morph-1"
                       style={{ mixBlendMode: 'color-dodge', opacity: 0.7 }}
@@ -158,56 +155,53 @@ export default function LoginStatusModal({
                   </>
                 ) : (
                   <>
-                    {/* Deep Crimson/Burgundy Blob */}
                     <div 
-                      className="absolute top-[8%] left-[12%] w-[75%] h-[75%] bg-gradient-to-br from-[#881337] via-[#be123c] to-[#4c0519] animate-orb-morph-1 animate-orb-spin"
+                      className="absolute top-[8%] left-[12%] w-[75%] h-[75%] bg-gradient-to-br from-[#881337] via-[#e11d48] to-[#4c0519] animate-orb-morph-1 animate-orb-spin"
                       style={{ mixBlendMode: 'multiply' }}
                     />
-                    {/* Vibrant Coral/Amber Blob */}
                     <div 
-                      className="absolute bottom-[5%] right-[8%] w-[85%] h-[85%] bg-gradient-to-tr from-[#f43f5e] via-[#ef4444] to-[#ea580c] animate-orb-morph-2 animate-orb-spin-reverse"
+                      className="absolute bottom-[5%] right-[8%] w-[85%] h-[85%] bg-gradient-to-tr from-[#f97316] via-[#fb7185] to-[#f43f5e] animate-orb-morph-2 animate-orb-spin-reverse"
                       style={{ mixBlendMode: 'normal' }}
                     />
-                    {/* Rose Coral Core Swirl */}
                     <div 
-                      className="absolute top-[35%] left-[25%] w-[60%] h-[60%] bg-[#fda4af] rounded-full animate-orb-morph-1"
-                      style={{ mixBlendMode: 'color-dodge', opacity: 0.75 }}
+                      className="absolute top-[35%] left-[25%] w-[60%] h-[60%] bg-[#f43f5e] rounded-full animate-orb-morph-1"
+                      style={{ mixBlendMode: 'color-dodge', opacity: 0.7 }}
                     />
                   </>
                 )}
               </div>
 
-              {/* 3. High-Refraction Reference Texture Blend */}
+              {/* 3. High Definition Glass Sphere Overlay from orb_reference.png */}
               <div 
                 className="absolute inset-0 rounded-full pointer-events-none animate-orb-spin-reverse"
                 style={{
                   backgroundImage: `url(${orbReferenceImg})`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
-                  mixBlendMode: 'overlay',
-                  opacity: 0.75
+                  mixBlendMode: isSuccess ? 'overlay' : 'luminosity',
+                  opacity: isSuccess ? 0.75 : 0.65
                 }}
               />
 
-              {/* 4. Center Hero Icon Floating Inside the Crystal Lens */}
+              {/* 4. Foreground Dynamic Status Icon (Checkmark or Cross) */}
               <div className="relative z-10 flex items-center justify-center">
                 {isSuccess ? (
-                  <Check className="w-8 h-8 text-white stroke-[3.4] drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] transition-transform animate-in zoom-in-50 duration-300" />
+                  <Check className="w-7 sm:w-8 h-7 sm:h-8 text-white stroke-[3.4] drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] animate-in zoom-in-50 duration-300" />
                 ) : (
-                  <X className="w-8 h-8 text-white stroke-[3.4] drop-shadow-[0_2px_8px_rgba(0,0,0,0.45)] transition-transform animate-in zoom-in-50 duration-300" />
+                  <X className="w-7 sm:w-8 h-7 sm:h-8 text-white stroke-[3.4] drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] animate-in zoom-in-50 duration-300" />
                 )}
               </div>
 
               {/* 5. Realistic Specular Reflections on Top */}
               <div className="absolute top-0.5 left-1/2 -translate-x-1/2 w-[76%] h-[36%] rounded-[100%] bg-gradient-to-b from-white/90 via-white/35 to-transparent blur-[0.5px] pointer-events-none" />
-              <div className="absolute top-2 left-2.5 w-1.5 h-1 bg-white rounded-full blur-[0.2px] rotate-[-30deg] pointer-events-none animate-orb-highlight" />
+              <div className="absolute top-1.5 sm:top-2 left-2 sm:left-2.5 w-1.5 h-1 bg-white rounded-full blur-[0.2px] rotate-[-30deg] pointer-events-none animate-orb-highlight" />
               <div className="absolute inset-0 rounded-full border border-white/70 pointer-events-none" />
             </div>
           </div>
 
           {/* Contact Shadow directly under Orb */}
           <div 
-            className={`w-12 h-1 rounded-[100%] blur-[2px] mt-1.5 pointer-events-none ${
+            className={`w-10 sm:w-12 h-1 rounded-[100%] blur-[2px] mt-1.5 pointer-events-none ${
               isSuccess ? 'bg-emerald-950/20' : 'bg-rose-950/25'
             }`} 
           />
@@ -216,10 +210,10 @@ export default function LoginStatusModal({
         {/* =========================================================
             Content Body (Status Pill, Title, Details)
             ========================================================= */}
-        <div className="text-center mt-2.5 space-y-2">
+        <div className="text-center mt-1.5 sm:mt-2.5 space-y-1.5 sm:space-y-2">
           
           {/* Status Badge Pill */}
-          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[11px] font-semibold tracking-wide uppercase border">
+          <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-[10px] sm:text-[11px] font-semibold tracking-wide uppercase border">
             {isSuccess ? (
               <span className="bg-emerald-50 text-emerald-800 border-emerald-200/80 inline-flex items-center gap-1.5">
                 <span className="w-1.5 h-1.5 rounded-full bg-[#00c25a] animate-pulse" />
@@ -234,12 +228,12 @@ export default function LoginStatusModal({
           </div>
 
           {/* Headline */}
-          <h3 className="text-xl sm:text-2xl font-extrabold text-gray-950 tracking-tight">
+          <h3 className="text-lg sm:text-2xl font-extrabold text-gray-950 tracking-tight leading-tight">
             {isSuccess ? 'Welcome Back!' : 'Unable to Sign In'}
           </h3>
 
           {/* Subtitle / Description */}
-          <p className="text-xs text-gray-600 leading-relaxed max-w-xs mx-auto">
+          <p className="text-xs text-gray-600 leading-normal max-w-xs mx-auto">
             {isSuccess 
               ? 'Your identity has been verified. Session established with Aoneix Cloud API Gateway.' 
               : errorMessage
@@ -248,7 +242,7 @@ export default function LoginStatusModal({
 
           {/* Session / Diagnostic Info Box */}
           <div 
-            className={`mt-3 p-3 rounded-xl text-left text-xs border ${
+            className={`mt-2 sm:mt-3 p-2.5 sm:p-3 rounded-xl text-left text-xs border ${
               isSuccess 
                 ? 'bg-emerald-50/60 border-emerald-100/90 text-emerald-950' 
                 : 'bg-rose-50/70 border-rose-100/90 text-rose-950'
@@ -286,21 +280,21 @@ export default function LoginStatusModal({
         {/* =========================================================
             Action Buttons
             ========================================================= */}
-        <div className="mt-5 space-y-2">
+        <div className="mt-3.5 sm:mt-5 space-y-1.5 sm:space-y-2">
           {isSuccess ? (
             <>
               {/* Primary: Continue to Dashboard */}
               <button
                 type="button"
                 onClick={onContinue}
-                className="w-full py-2.5 px-4 rounded-lg bg-gradient-to-r from-[#00c25a] to-[#075e37] hover:from-[#00b050] hover:to-[#054c2c] active:scale-[0.99] text-white font-semibold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
+                className="w-full py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg bg-gradient-to-r from-[#00c25a] to-[#075e37] hover:from-[#00b050] hover:to-[#054c2c] active:scale-[0.99] text-white font-semibold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
                 <span>Continue to Dashboard</span>
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5" />
               </button>
 
               {/* Auto Redirect Countdown Footer */}
-              <div className="text-center pt-1">
+              <div className="text-center pt-0.5">
                 <span className="text-[10px] text-gray-400 font-normal">
                   Auto-redirecting in {secondsRemaining}s...
                 </span>
@@ -312,7 +306,7 @@ export default function LoginStatusModal({
               <button
                 type="button"
                 onClick={onClose}
-                className="w-full py-2.5 px-4 rounded-lg bg-gray-950 hover:bg-black active:scale-[0.99] text-white font-semibold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
+                className="w-full py-2 sm:py-2.5 px-3 sm:px-4 rounded-lg bg-gray-950 hover:bg-black active:scale-[0.99] text-white font-semibold text-xs sm:text-sm shadow-sm flex items-center justify-center gap-2 transition-all cursor-pointer"
               >
                 <RefreshCw className="w-3.5 h-3.5" />
                 <span>Try Again</span>
@@ -325,7 +319,7 @@ export default function LoginStatusModal({
                   if (onClose) onClose();
                   if (onResetPassword) onResetPassword();
                 }}
-                className="w-full py-2 px-4 rounded-lg text-xs font-semibold text-emerald-800 hover:text-emerald-950 hover:bg-emerald-50/70 border border-emerald-200/80 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
+                className="w-full py-1.5 sm:py-2 px-3 sm:px-4 rounded-lg text-xs font-semibold text-emerald-800 hover:text-emerald-950 hover:bg-emerald-50/70 border border-emerald-200/80 transition-colors flex items-center justify-center gap-1.5 cursor-pointer"
               >
                 <KeyRound className="w-3.5 h-3.5 text-emerald-600" />
                 <span>Forgot password? Reset here</span>
