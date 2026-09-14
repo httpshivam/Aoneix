@@ -190,7 +190,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
       </header>
 
       {/* Main Center Area: Side-by-Side Left Illustration & Right Login Card */}
-      <main className="relative z-10 w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-8 pt-1.5 pb-2.5 sm:py-6 flex-1 flex flex-col lg:flex-row items-center justify-start sm:justify-center lg:justify-between gap-3 lg:gap-10">
+      <main className="relative z-10 w-full max-w-5xl mx-auto px-3.5 sm:px-6 md:px-8 pt-3 sm:pt-6 pb-6 sm:pb-8 flex-1 flex flex-col lg:flex-row items-center justify-start sm:justify-center lg:justify-between gap-4 lg:gap-10">
 
         {/* Left Side: Illustration from login_page_img.png (Hidden on mobile, visible on tablet & laptop) */}
         <div className="hidden md:flex flex-1 w-full items-center justify-center lg:justify-start lg:pl-4">
@@ -204,18 +204,18 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
         </div>
 
         {/* Right Side: Form Card matching MetaAuthModal / Screenshot aesthetic */}
-        <div className="w-full max-w-[410px] shrink-0">
+        <div className="w-full max-w-[420px] shrink-0">
           <div className="bg-white rounded-2xl border border-black shadow-2xl overflow-hidden relative">
 
             {/* Dark Green Gradient Header */}
-            <div className="bg-gradient-to-r from-[#075e37] to-[#0a5c36] px-4 py-2 sm:px-5 sm:py-3 text-white flex items-center justify-between">
+            <div className="bg-gradient-to-r from-[#075e37] to-[#0a5c36] px-5 py-3 sm:px-5 sm:py-3.5 text-white flex items-center justify-between">
               <div className="flex items-center space-x-2.5">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
-                  <ShieldCheck className="w-4 h-4 text-[#86efac]" />
+                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
+                  <ShieldCheck className="w-4.5 h-4.5 text-[#86efac]" />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-sm sm:text-[15px] leading-tight text-white">Log in to your account</h3>
-                  <p className="text-[10.5px] sm:text-[11px] text-emerald-200 mt-0.5">Aoneix Cloud Workspace Access</p>
+                  <h3 className="font-bold text-[15px] leading-tight text-white">Log in to your account</h3>
+                  <p className="text-[11px] text-emerald-200 mt-0.5">Aoneix Cloud Workspace Access</p>
                 </div>
               </div>
               <button
@@ -229,15 +229,15 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
             </div>
 
             {/* Card Body containing all form content and buttons */}
-            <div className="p-3 sm:p-4">
+            <div className="p-5 sm:p-5">
 
               {/* Standard Login or OTP Form */}
               {!isOtpMode ? (
-                <form onSubmit={handleSubmit} className="space-y-2.5">
+                <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-3">
 
                   {/* 1. Email Field */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-800 mb-1">
+                    <label className="block text-xs font-semibold text-gray-800 mb-1.5">
                       Email
                     </label>
                     <input
@@ -246,13 +246,13 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                       onChange={(e) => setEmail(e.target.value)}
                       placeholder="Enter your email"
                       required
-                      className="w-full px-3 py-1.5 text-xs sm:text-[13px] rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white placeholder-gray-400 text-gray-900 transition-all shadow-2xs"
+                      className="w-full px-3.5 py-2.5 text-[13.5px] sm:text-[13px] rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white placeholder-gray-400 text-gray-900 transition-all shadow-2xs"
                     />
                   </div>
 
                   {/* 2. Password Field */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-800 mb-1">
+                    <label className="block text-xs font-semibold text-gray-800 mb-1.5">
                       Password
                     </label>
                     <div className="relative">
@@ -262,12 +262,12 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter your password"
                         required
-                        className="w-full px-3 py-1.5 pr-9 text-xs sm:text-[13px] rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white placeholder-gray-400 text-gray-900 transition-all shadow-2xs font-sans"
+                        className="w-full px-3.5 py-2.5 pr-10 text-[13.5px] sm:text-[13px] rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white placeholder-gray-400 text-gray-900 transition-all shadow-2xs font-sans"
                       />
                       <button
                         type="button"
                         onClick={() => setShowPassword(!showPassword)}
-                        className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors p-0.5"
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 transition-colors p-0.5"
                         aria-label={showPassword ? 'Hide password' : 'Show password'}
                       >
                         {showPassword ? (
@@ -281,11 +281,11 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
 
                   {/* 3. Client ID Field with fixed prefix */}
                   <div>
-                    <label className="block text-xs font-medium text-gray-800 mb-1">
+                    <label className="block text-xs font-semibold text-gray-800 mb-1.5">
                       Client ID
                     </label>
-                    <div className="flex rounded-lg border border-gray-200 overflow-hidden shadow-2xs focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-600 transition-all">
-                      <span className="inline-flex items-center px-2.5 bg-gray-50 border-r border-gray-200 text-xs text-gray-500 select-none">
+                    <div className="flex rounded-xl border border-gray-200 overflow-hidden shadow-2xs focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-600 transition-all">
+                      <span className="inline-flex items-center px-3 py-2.5 bg-gray-50 border-r border-gray-200 text-xs text-gray-500 select-none">
                         live.aoneix.io/
                       </span>
                       <input
@@ -293,7 +293,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                         value={clientId}
                         onChange={(e) => setClientId(e.target.value)}
                         placeholder="Enter your Client ID e.g. 123456"
-                        className="flex-1 px-3 py-1.5 text-xs sm:text-[13px] bg-white placeholder-gray-400 text-gray-900 focus:outline-none"
+                        className="flex-1 px-3 py-2.5 text-[13.5px] sm:text-[13px] bg-white placeholder-gray-400 text-gray-900 focus:outline-none"
                       />
                     </div>
                   </div>
@@ -333,7 +333,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-2 px-3 rounded-lg bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-semibold text-xs sm:text-sm shadow-sm transition-all text-center flex items-center justify-center gap-2 mt-1"
+                    className="w-full py-2.5 sm:py-2 px-4 rounded-xl bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-sm shadow-sm transition-all text-center flex items-center justify-center gap-2 mt-1.5 cursor-pointer"
                   >
                     {isLoading ? (
                       <span className="inline-flex items-center gap-1.5">
@@ -347,9 +347,9 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                 </form>
               ) : (
                 /* Alternate OTP Login Flow */
-                <form onSubmit={handleSubmit} className="space-y-2.5">
+                <form onSubmit={handleSubmit} className="space-y-3.5 sm:space-y-3">
                   <div>
-                    <label className="block text-xs font-medium text-gray-800 mb-1">
+                    <label className="block text-xs font-semibold text-gray-800 mb-1.5">
                       Registered Email or Phone
                     </label>
                     <div className="flex gap-2">
@@ -358,12 +358,12 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="e.g. name@company.com or +91"
-                        className="flex-1 px-3 py-1.5 text-xs sm:text-[13px] rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white"
+                        className="flex-1 px-3.5 py-2.5 text-[13.5px] sm:text-[13px] rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white"
                       />
                       <button
                         type="button"
                         onClick={handleSendOtp}
-                        className="px-3 py-1 text-xs font-semibold bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-lg whitespace-nowrap transition-colors"
+                        className="px-3.5 py-1.5 text-xs font-semibold bg-emerald-100 hover:bg-emerald-200 text-emerald-900 rounded-xl whitespace-nowrap transition-colors"
                       >
                         {otpSent ? 'Resend' : 'Send OTP'}
                       </button>
@@ -372,7 +372,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
 
                   {otpSent && (
                     <div>
-                      <label className="block text-xs font-medium text-gray-800 mb-1.5">
+                      <label className="block text-xs font-semibold text-gray-800 mb-1.5">
                         Enter 6-digit OTP
                       </label>
                       <div className="flex gap-1.5 justify-between">
@@ -384,7 +384,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                             maxLength={1}
                             value={digit}
                             onChange={(e) => handleOtpChange(idx, e.target.value)}
-                            className="w-9 h-10 text-center text-base font-bold border border-gray-300 rounded-lg focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none"
+                            className="w-9 h-11 text-center text-base font-bold border border-gray-300 rounded-xl focus:border-emerald-500 focus:ring-2 focus:ring-emerald-200 outline-none"
                           />
                         ))}
                       </div>
@@ -394,7 +394,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                   <button
                     type="submit"
                     disabled={isLoading}
-                    className="w-full py-2 px-3 rounded-lg bg-[#00c25a] hover:bg-[#00b050] text-white font-semibold text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2 mt-1"
+                    className="w-full py-2.5 sm:py-2 px-4 rounded-xl bg-[#00c25a] hover:bg-[#00b050] text-white font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2 mt-1.5"
                   >
                     {isLoading ? 'Verifying...' : 'Verify & Login'}
                   </button>
@@ -403,7 +403,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                     <button
                       type="button"
                       onClick={() => setIsOtpMode(false)}
-                      className="text-[11px] font-semibold text-emerald-700 hover:underline"
+                      className="text-xs font-semibold text-emerald-700 hover:underline"
                     >
                       ← Back to Password Login
                     </button>
@@ -412,7 +412,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
               )}
 
               {/* OR Divider with horizontal lines */}
-              <div className="relative my-2 sm:my-2.5 text-center">
+              <div className="relative my-3.5 sm:my-3 text-center">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-200" />
                 </div>
@@ -424,13 +424,13 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
               </div>
 
               {/* Social Logins: Facebook Meta + Google */}
-              <div className="space-y-1.5">
+              <div className="space-y-2 sm:space-y-1.5">
 
                 {/* 1. Login with Facebook Meta */}
                 <button
                   type="button"
                   onClick={handleFacebookLogin}
-                  className="w-full py-1.5 px-3 rounded-lg border border-gray-300 hover:bg-gray-50 active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-xs font-semibold text-gray-800 shadow-2xs group"
+                  className="w-full py-2.5 px-3.5 rounded-xl border border-gray-300 hover:bg-gray-50 active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-xs font-semibold text-gray-800 shadow-2xs group cursor-pointer"
                 >
                   <svg className="w-3.5 h-3.5 shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="#1877F2">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -442,7 +442,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
                 <button
                   type="button"
                   onClick={handleGoogleLogin}
-                  className="w-full py-1.5 px-3 rounded-lg border border-gray-300 hover:bg-gray-50 active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-xs font-semibold text-gray-800 shadow-2xs group"
+                  className="w-full py-2.5 px-3.5 rounded-xl border border-gray-300 hover:bg-gray-50 active:scale-[0.99] transition-all flex items-center justify-center gap-2 text-xs font-semibold text-gray-800 shadow-2xs group cursor-pointer"
                 >
                   <svg className="w-3.5 h-3.5 shrink-0 transition-transform group-hover:scale-110" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -455,7 +455,7 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
               </div>
 
               {/* Login with OTP Button */}
-              <div className="text-center mt-2 mb-1">
+              <div className="text-center mt-3 mb-1.5 sm:mt-2 sm:mb-1">
                 <button
                   type="button"
                   onClick={() => setIsOtpMode(!isOtpMode)}
@@ -470,21 +470,21 @@ export default function SignIn({ onBack, onOpenSignUp, onOpenForgotPassword, sho
 
 
               {/* Don't have an account? Sign Up */}
-              <div className="text-center text-xs text-gray-600 pt-1">
+              <div className="text-center text-xs text-gray-600 pt-2 sm:pt-1">
                 <span>Don't have an account? </span>
                 <button
                   type="button"
                   onClick={() => {
                     if (onOpenSignUp) onOpenSignUp();
                   }}
-                  className="text-emerald-700 hover:text-emerald-800 font-semibold hover:underline cursor-pointer"
+                  className="text-emerald-700 hover:text-emerald-800 font-bold hover:underline cursor-pointer"
                 >
                   Sign Up
                 </button>
               </div>
 
               {/* Bottom Note inside Card */}
-              <div className="text-center mt-1.5 text-[10px] text-gray-400 font-normal">
+              <div className="text-center mt-2 sm:mt-1.5 text-[10px] text-gray-400 font-normal">
                 Aoneix 2026. All rights reserved.
               </div>
 

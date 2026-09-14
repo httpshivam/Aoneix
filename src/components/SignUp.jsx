@@ -150,7 +150,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
       </header>
 
       {/* Main Center Area: Left Benefits + Right Sign Up Card */}
-      <main className="relative z-10 w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-8 pt-1.5 pb-2.5 sm:py-6 flex-1 flex flex-col lg:flex-row items-center justify-start sm:justify-center lg:justify-between gap-3 lg:gap-10">
+      <main className="relative z-10 w-full max-w-5xl mx-auto px-3.5 sm:px-6 md:px-8 pt-3 sm:pt-6 pb-6 sm:pb-8 flex-1 flex flex-col lg:flex-row items-center justify-start sm:justify-center lg:justify-between gap-4 lg:gap-10">
 
         {/* Left Side: Enterprise Benefits & Social Proof (Hidden on mobile, visible on tablet md: & laptop lg:) */}
         <div className="hidden md:flex flex-1 w-full flex-col justify-center max-w-[500px] lg:pl-2">
@@ -296,14 +296,14 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
           <div className="bg-white rounded-2xl border border-black shadow-2xl overflow-hidden relative">
 
             {/* Dark Green Gradient Header */}
-            <div className="bg-gradient-to-r from-[#075e37] to-[#0a5c36] px-4 py-2 sm:px-5 sm:py-3 text-white flex items-center justify-between">
+            <div className="bg-gradient-to-r from-[#075e37] to-[#0a5c36] px-5 py-3 sm:px-5 sm:py-3.5 text-white flex items-center justify-between">
               <div className="flex items-center space-x-2.5">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
-                  <Sparkles className="w-4 h-4 text-[#86efac]" />
+                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
+                  <Sparkles className="w-4.5 h-4.5 text-[#86efac]" />
                 </div>
                 <div>
-                  <h3 className="font-bold text-sm sm:text-[15px] leading-tight text-white">Start your free trial</h3>
-                  <p className="text-[10.5px] sm:text-[11px] text-emerald-200 mt-0.5">Get started with a demo account on Aoneix</p>
+                  <h3 className="font-bold text-[15px] leading-tight text-white">Start your free trial</h3>
+                  <p className="text-[11px] text-emerald-200 mt-0.5">Get started with a demo account on Aoneix</p>
                 </div>
               </div>
               <button
@@ -317,15 +317,15 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
             </div>
 
             {/* Card Body containing Form */}
-            <div className="p-3 sm:p-4">
+            <div className="p-4 sm:p-5">
 
               {/* Social Sign Up Buttons (Google & Facebook Meta) */}
-              <div className="grid grid-cols-2 gap-2 mb-2">
+              <div className="grid grid-cols-2 gap-2 mb-2.5">
                 {/* 1. Google Sign Up */}
                 <button
                   type="button"
                   onClick={handleGoogleSignUp}
-                  className="py-1.5 px-2 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 active:scale-[0.99] transition-all flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-800 shadow-2xs"
+                  className="py-2 sm:py-1.5 px-3 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 active:scale-[0.99] transition-all flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-800 shadow-2xs cursor-pointer"
                 >
                   <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24">
                     <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -340,7 +340,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                 <button
                   type="button"
                   onClick={handleFacebookSignUp}
-                  className="py-1.5 px-2 rounded-lg border border-gray-200 hover:border-gray-300 hover:bg-gray-50 active:scale-[0.99] transition-all flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-800 shadow-2xs"
+                  className="py-2 sm:py-1.5 px-3 rounded-xl border border-gray-200 hover:border-gray-300 hover:bg-gray-50 active:scale-[0.99] transition-all flex items-center justify-center gap-1.5 text-xs font-semibold text-gray-800 shadow-2xs cursor-pointer"
                 >
                   <svg className="w-3.5 h-3.5 shrink-0" viewBox="0 0 24 24" fill="#1877F2">
                     <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
@@ -350,7 +350,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
               </div>
 
               {/* Divider: or sign up with email */}
-              <div className="relative my-1.5 text-center">
+              <div className="relative my-2.5 sm:my-2 text-center">
                 <div className="absolute inset-0 flex items-center">
                   <div className="w-full border-t border-gray-200" />
                 </div>
@@ -362,12 +362,12 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
               </div>
 
               {/* Sign Up Form */}
-              <form onSubmit={handleSubmit} className="space-y-1.5">
+              <form onSubmit={handleSubmit} className="space-y-2 sm:space-y-1.5">
 
                 {/* First Name & Last Name (Side by Side) */}
                 <div className="grid grid-cols-2 gap-2">
                   <div>
-                    <label className="block text-[11px] font-medium text-gray-700 mb-0.5">
+                    <label className="block text-[11px] font-semibold text-gray-700 mb-1">
                       * First Name
                     </label>
                     <input
@@ -376,12 +376,12 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                       onChange={(e) => setFirstName(e.target.value)}
                       placeholder="e.g. John"
                       required
-                      className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 shadow-2xs"
+                      className="w-full px-3 py-2 text-[13px] sm:text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 shadow-2xs"
                     />
                   </div>
 
                   <div>
-                    <label className="block text-[11px] font-medium text-gray-700 mb-0.5">
+                    <label className="block text-[11px] font-semibold text-gray-700 mb-1">
                       * Last Name
                     </label>
                     <input
@@ -390,14 +390,14 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                       onChange={(e) => setLastName(e.target.value)}
                       placeholder="e.g. Doe"
                       required
-                      className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 shadow-2xs"
+                      className="w-full px-3 py-2 text-[13px] sm:text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 shadow-2xs"
                     />
                   </div>
                 </div>
 
                 {/* Business Email Address */}
                 <div>
-                  <label className="block text-[11px] font-medium text-gray-700 mb-0.5">
+                  <label className="block text-[11px] font-semibold text-gray-700 mb-1">
                     * Business Email Address
                   </label>
                   <input
@@ -406,13 +406,13 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                     onChange={(e) => setBusinessEmail(e.target.value)}
                     placeholder="name@company.com"
                     required
-                    className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 shadow-2xs"
+                    className="w-full px-3 py-2 text-[13px] sm:text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 shadow-2xs"
                   />
                 </div>
 
                 {/* Password */}
                 <div>
-                  <label className="block text-[11px] font-medium text-gray-700 mb-0.5">
+                  <label className="block text-[11px] font-semibold text-gray-700 mb-1">
                     * Password
                   </label>
                   <div className="relative">
@@ -422,12 +422,12 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                       onChange={(e) => setPassword(e.target.value)}
                       placeholder="At least 8 characters"
                       required
-                      className="w-full px-2.5 py-1.5 pr-8 text-xs rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 shadow-2xs font-sans"
+                      className="w-full px-3 py-2 pr-9 text-[13px] sm:text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 shadow-2xs font-sans"
                     />
                     <button
                       type="button"
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 p-0.5"
+                      className="absolute right-2.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-700 p-0.5"
                     >
                       {showPassword ? <Eye className="w-3.5 h-3.5" /> : <EyeOff className="w-3.5 h-3.5" />}
                     </button>
@@ -436,12 +436,12 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
 
                 {/* Phone Number with Country Code */}
                 <div>
-                  <label className="block text-[11px] font-medium text-gray-700 mb-0.5 flex items-center gap-1">
+                  <label className="block text-[11px] font-semibold text-gray-700 mb-1 flex items-center gap-1">
                     <span>* Phone number</span>
                     <span className="text-[9px] text-gray-400">ⓘ</span>
                   </label>
-                  <div className="flex rounded-lg border border-gray-200 overflow-hidden shadow-2xs focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-600">
-                    <div className="flex items-center px-2 py-1.5 bg-gray-50 border-r border-gray-200 text-[11px] font-semibold text-gray-700 select-none gap-1 shrink-0">
+                  <div className="flex rounded-xl border border-gray-200 overflow-hidden shadow-2xs focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-600">
+                    <div className="flex items-center px-2.5 py-2 bg-gray-50 border-r border-gray-200 text-[11px] font-semibold text-gray-700 select-none gap-1 shrink-0">
                       <span>🇮🇳</span>
                       <span>{countryName}</span>
                       <span className="text-gray-400 text-[10px]">({countryCode})</span>
@@ -452,14 +452,14 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                       onChange={(e) => setPhone(e.target.value)}
                       placeholder="e.g. 9876543210"
                       required
-                      className="flex-1 px-2.5 py-1.5 text-xs bg-white text-gray-900 focus:outline-none"
+                      className="flex-1 px-3 py-2 text-[13px] sm:text-xs bg-white text-gray-900 focus:outline-none"
                     />
                   </div>
                 </div>
 
                 {/* How did you hear about Aoneix? */}
                 <div>
-                  <label className="block text-[11px] font-medium text-gray-700 mb-0.5">
+                  <label className="block text-[11px] font-semibold text-gray-700 mb-1">
                     * How did you hear about Aoneix?
                   </label>
                   <div className="relative">
@@ -467,7 +467,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                       value={referralSource}
                       onChange={(e) => setReferralSource(e.target.value)}
                       required
-                      className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 appearance-none shadow-2xs cursor-pointer"
+                      className="w-full px-3 py-2 text-[13px] sm:text-xs rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 appearance-none shadow-2xs cursor-pointer"
                     >
                       <option value="" disabled>Select</option>
                       <option value="Google Search">Google Search</option>
@@ -477,12 +477,12 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                       <option value="Meta Partner Directory">Meta Partner Directory</option>
                       <option value="Other">Other</option>
                     </select>
-                    <ChevronDown className="w-3.5 h-3.5 text-gray-400 absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                    <ChevronDown className="w-3.5 h-3.5 text-gray-400 absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
                   </div>
                 </div>
 
                 {/* Terms and Privacy Policy disclaimer note */}
-                <div className="p-2 bg-gray-50 border border-gray-100 rounded-lg text-[9px] text-gray-500 leading-tight">
+                <div className="p-2.5 bg-gray-50 border border-gray-100 rounded-xl text-[9.5px] text-gray-500 leading-tight">
                   By signing up, you agree to the <span className="underline font-medium text-gray-700">Terms & Conditions</span> and <span className="underline font-medium text-gray-700">Privacy Policy</span>, and consent to receive marketing communications.
                 </div>
 
@@ -490,7 +490,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
                 <button
                   type="submit"
                   disabled={isLoading}
-                  className="w-full py-2 px-3 rounded-lg bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition-all text-center flex items-center justify-center gap-2 mt-1"
+                  className="w-full py-2.5 sm:py-2 px-4 rounded-xl bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-sm shadow-sm transition-all text-center flex items-center justify-center gap-2 mt-1.5 cursor-pointer"
                 >
                   {isLoading ? (
                     <span className="inline-flex items-center gap-1.5">
@@ -504,7 +504,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
               </form>
 
               {/* Already have an account? Login */}
-              <div className="text-center text-xs text-gray-600 pt-1.5">
+              <div className="text-center text-xs text-gray-600 pt-2 sm:pt-1.5">
                 <span>Already have an account? </span>
                 <button
                   type="button"
@@ -516,7 +516,7 @@ export default function SignUp({ onBack, onOpenSignIn, onOpenOnboarding, showToa
               </div>
 
               {/* Bottom Copyright Note */}
-              <div className="text-center mt-1.5 text-[10px] text-gray-400 font-normal">
+              <div className="text-center mt-2 sm:mt-1.5 text-[10px] text-gray-400 font-normal">
                 Aoneix 2026. All rights reserved.
               </div>
 
