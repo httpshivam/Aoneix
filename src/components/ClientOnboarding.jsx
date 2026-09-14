@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import AoneixLogo from './AoneixLogo';
-import { 
-  ArrowLeft, 
-  Check, 
-  ChevronDown, 
-  Headphones, 
-  Send, 
-  TrendingUp, 
-  Sparkles, 
-  ShieldCheck, 
-  CheckCircle2, 
+import {
+  ArrowLeft,
+  Check,
+  ChevronDown,
+  Headphones,
+  Send,
+  TrendingUp,
+  Sparkles,
+  ShieldCheck,
+  CheckCircle2,
   HelpCircle,
   ExternalLink
 } from 'lucide-react';
@@ -30,7 +30,7 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
   const [teamSize, setTeamSize] = useState('4-10');
   const [dataStorage, setDataStorage] = useState(['Shopify', 'HubSpot']);
   const [aiTools, setAiTools] = useState(['ChatGPT', 'Gemini']);
-  
+
   // Loading & Provisioning animation
   const [isProvisioning, setIsProvisioning] = useState(false);
   const [provisioningStep, setProvisioningStep] = useState(0);
@@ -130,7 +130,7 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
           spread: 80,
           origin: { y: 0.6 }
         });
-      } catch (_) {}
+      } catch (_) { }
     }, 1600);
 
     setTimeout(() => {
@@ -145,11 +145,11 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
 
   return (
     <div className="min-h-screen bg-white text-gray-900 font-sf flex flex-col justify-between select-none">
-      
+
       {/* Top Fixed Header with Centered Logo & Step Progress Bar */}
       <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-gray-100 shrink-0">
-        <div className="w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-8 h-12 sm:h-16 flex items-center justify-between relative">
-          
+        <div className="w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-8 h-11 sm:h-14 flex items-center justify-between relative">
+
           {/* Left: Back button */}
           <div className="flex items-center z-10">
             <button
@@ -158,7 +158,7 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
                 if (step === 2) setStep(1);
                 else if (onBack) onBack();
               }}
-              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-950 transition-colors py-1 group cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-medium text-gray-600 hover:text-gray-950 transition-colors py-1 group"
             >
               <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-0.5" />
               <span>Back</span>
@@ -167,73 +167,72 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
 
           {/* Center: Absolute 50% Dead Center Brand Logo */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center pointer-events-auto">
-            <button 
-              type="button" 
-              onClick={onBack} 
-              className="focus:outline-none transition-transform hover:scale-105 cursor-pointer"
+            <button
+              type="button"
+              onClick={onBack}
+              className="focus:outline-none transition-transform hover:scale-105"
               title="Return to Home"
             >
-              <AoneixLogo className="h-6 sm:h-8" />
+              <AoneixLogo className="h-6 sm:h-7" />
             </button>
           </div>
 
           {/* Right: Step Pill Badge */}
           <div className="flex items-center justify-end z-10">
-            <span className="text-[11px] sm:text-xs font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs">
+            <span className="text-xs font-semibold px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 shadow-2xs">
               Step {step} of 2
             </span>
           </div>
         </div>
 
         {/* Thin Progress Indicator Line */}
-        <div className="w-full h-1 bg-gray-100">
-          <div 
+        <div className="w-full h-0.5 sm:h-1 bg-gray-100">
+          <div
             className="h-full bg-gradient-to-r from-[#00c25a] to-[#075e37] transition-all duration-300 ease-out"
             style={{ width: step === 1 ? '50%' : '100%' }}
           />
         </div>
       </header>
 
-      {/* Main Container Area with mobile-friendly px-3 padding and compact vertical spacing */}
-      <main className="flex-1 w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-8 py-2.5 sm:py-8">
-        
+      {/* Main Container Area */}
+      <main className="flex-1 w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-8 pt-2 pb-3.5 sm:py-8">
+
         {/* STEP 1: How do you connect with your customers? */}
         {step === 1 && (
-          <div className="space-y-3.5 sm:space-y-6 animate-in fade-in slide-in-from-bottom-2 duration-300">
-            
-            {/* Header Titles */}
+          <div className="space-y-8 animate-in fade-in slide-in-from-bottom-2 duration-300">
+
+            {/* Header Titles matching Screenshot 1 */}
             <div>
-              <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-gray-950 tracking-tight leading-tight mb-1">
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight leading-tight mb-2">
                 How do you connect with <br className="hidden sm:inline" />
                 <span className="text-[#00c25a]">your customers?</span>
               </h1>
-              <p className="text-xs sm:text-sm font-semibold text-gray-800">
+              <p className="text-sm sm:text-base font-semibold text-gray-800">
                 What's your primary channel for customer conversations?
               </p>
-              <p className="text-[11px] sm:text-xs text-gray-400 mt-0.5">
+              <p className="text-xs sm:text-sm text-gray-400 mt-0.5">
                 You can set up other channels later
               </p>
             </div>
 
             {/* 3 Primary Channel Cards - Full Width 3-Column Layout */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-5">
-              
+            <div className="grid grid-cols-3 gap-2.5 sm:gap-4 md:gap-5">
+
               {/* WhatsApp Card */}
-              <div 
+              <div
                 onClick={() => setPrimaryChannel('whatsapp')}
-                className={`cursor-pointer rounded-xl sm:rounded-2xl p-2.5 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center transition-all relative border-2 ${
-                  primaryChannel === 'whatsapp'
+                className={`cursor-pointer rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center transition-all relative border-2 ${primaryChannel === 'whatsapp'
                     ? 'border-[#00c25a] bg-[#ecfdf5] shadow-xs'
                     : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50'
-                }`}
+                  }`}
               >
                 {primaryChannel === 'whatsapp' && (
-                  <div className="absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
-                    <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
+                  <div className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-4 h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                 )}
-                <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-1 sm:mb-2">
-                  <svg className="w-6 h-6 sm:w-9 sm:h-9" viewBox="0 0 24 24" fill="#25D366">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-2 sm:mb-2.5">
+                  <svg className="w-8 h-8 sm:w-9 sm:h-9" viewBox="0 0 24 24" fill="#25D366">
                     <path d="M12.004 2c-5.518 0-9.998 4.476-9.998 9.995 0 1.761.459 3.479 1.331 4.992l-1.417 5.176 5.305-1.391c1.458.796 3.102 1.218 4.779 1.218 5.519 0 9.999-4.476 9.999-9.995 0-5.519-4.48-9.995-9.999-9.995zm5.836 14.177c-.244.688-1.226 1.312-1.996 1.408-.528.065-1.217.118-3.535-.841-2.969-1.229-4.887-4.249-5.035-4.447-.145-.198-1.202-1.602-1.202-3.056 0-1.453.762-2.169 1.034-2.463.272-.294.595-.368.793-.368.199 0 .398.002.571.011.183.01.428-.069.669.51.248.595.845 2.062.919 2.212.074.149.124.323.025.522-.099.198-.149.322-.297.496-.149.174-.313.389-.447.522-.149.149-.304.31-.131.608.173.298.77 1.267 1.652 2.054 1.135 1.012 2.091 1.325 2.389 1.474.298.149.472.124.646-.075.174-.198.744-.868.943-1.166.199-.298.398-.248.669-.149.273.099 1.727.815 2.025.964.298.149.497.223.571.348.075.124.075.719-.169 1.407z" />
                   </svg>
                 </div>
@@ -241,21 +240,20 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
               </div>
 
               {/* Instagram Card */}
-              <div 
+              <div
                 onClick={() => setPrimaryChannel('instagram')}
-                className={`cursor-pointer rounded-xl sm:rounded-2xl p-2.5 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center transition-all relative border-2 ${
-                  primaryChannel === 'instagram'
+                className={`cursor-pointer rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center transition-all relative border-2 ${primaryChannel === 'instagram'
                     ? 'border-[#00c25a] bg-[#ecfdf5] shadow-xs'
                     : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50'
-                }`}
+                  }`}
               >
                 {primaryChannel === 'instagram' && (
-                  <div className="absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
-                    <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
+                  <div className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-4 h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                 )}
-                <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-1 sm:mb-2">
-                  <svg className="w-6 h-6 sm:w-9 sm:h-9" viewBox="0 0 24 24">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-2 sm:mb-2.5">
+                  <svg className="w-8 h-8 sm:w-9 sm:h-9" viewBox="0 0 24 24">
                     <defs>
                       <radialGradient id="ig-grad" r="150%" cx="30%" cy="107%">
                         <stop offset="0%" stopColor="#fdf497" />
@@ -272,21 +270,20 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
               </div>
 
               {/* Messenger Card */}
-              <div 
+              <div
                 onClick={() => setPrimaryChannel('messenger')}
-                className={`cursor-pointer rounded-xl sm:rounded-2xl p-2.5 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center transition-all relative border-2 ${
-                  primaryChannel === 'messenger'
+                className={`cursor-pointer rounded-xl sm:rounded-2xl p-3 sm:p-4 md:p-5 flex flex-col items-center justify-center text-center transition-all relative border-2 ${primaryChannel === 'messenger'
                     ? 'border-[#00c25a] bg-[#ecfdf5] shadow-xs'
                     : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50'
-                }`}
+                  }`}
               >
                 {primaryChannel === 'messenger' && (
-                  <div className="absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
-                    <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
+                  <div className="absolute top-2 right-2 sm:top-2.5 sm:right-2.5 w-4 h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                 )}
-                <div className="w-8 h-8 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-1 sm:mb-2">
-                  <svg className="w-6 h-6 sm:w-9 sm:h-9" viewBox="0 0 24 24">
+                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-2 sm:mb-2.5">
+                  <svg className="w-8 h-8 sm:w-9 sm:h-9" viewBox="0 0 24 24">
                     <defs>
                       <linearGradient id="msg-grad" x1="0%" y1="0%" x2="100%" y2="100%">
                         <stop offset="0%" stopColor="#00C6FF" />
@@ -301,31 +298,29 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
 
             </div>
 
-            {/* Question: Are you currently using WhatsApp for business? */}
-            <div className="pt-1 sm:pt-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5 sm:mb-2.5">
+            {/* Question: Are you currently using WhatsApp for business? (Screenshot 1) */}
+            <div className="pt-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2.5">
                 Are you currently using WhatsApp for business?
               </label>
               <div className="flex items-center gap-6">
-                <label 
+                <label
                   onClick={() => setUsingWhatsAppForBusiness('yes')}
                   className="inline-flex items-center gap-2 cursor-pointer"
                 >
-                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border flex items-center justify-center transition-colors ${
-                    usingWhatsAppForBusiness === 'yes' ? 'border-[#00c25a] bg-[#00c25a]' : 'border-gray-300 bg-white'
-                  }`}>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${usingWhatsAppForBusiness === 'yes' ? 'border-[#00c25a] bg-[#00c25a]' : 'border-gray-300 bg-white'
+                    }`}>
                     {usingWhatsAppForBusiness === 'yes' && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                   </div>
                   <span className="text-xs sm:text-sm text-gray-800 font-medium">Yes</span>
                 </label>
 
-                <label 
+                <label
                   onClick={() => setUsingWhatsAppForBusiness('no')}
                   className="inline-flex items-center gap-2 cursor-pointer"
                 >
-                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border flex items-center justify-center transition-colors ${
-                    usingWhatsAppForBusiness === 'no' ? 'border-[#00c25a] bg-[#00c25a]' : 'border-gray-300 bg-white'
-                  }`}>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${usingWhatsAppForBusiness === 'no' ? 'border-[#00c25a] bg-[#00c25a]' : 'border-gray-300 bg-white'
+                    }`}>
                     {usingWhatsAppForBusiness === 'no' && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                   </div>
                   <span className="text-xs sm:text-sm text-gray-800 font-medium">No</span>
@@ -336,10 +331,10 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
             {/* Question: Which platform are you using? (Selectable pill buttons) */}
             {usingWhatsAppForBusiness === 'yes' && (
               <div>
-                <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5 sm:mb-2">
+                <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2.5">
                   Which platform are you using?
                 </label>
-                <div className="flex flex-wrap gap-1.5 sm:gap-2.5">
+                <div className="flex flex-wrap gap-2 sm:gap-2.5">
                   {platformOptions.map((platform) => {
                     const isSelected = selectedPlatforms.includes(platform);
                     return (
@@ -347,11 +342,10 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
                         key={platform}
                         type="button"
                         onClick={() => togglePlatform(platform)}
-                        className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all shadow-2xs border cursor-pointer ${
-                          isSelected
+                        className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all shadow-2xs border ${isSelected
                             ? 'bg-[#ecfdf5] border-[#00c25a] text-[#075e37] font-semibold'
                             : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
-                        }`}
+                          }`}
                       >
                         {platform}
                       </button>
@@ -361,16 +355,16 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
               </div>
             )}
 
-            {/* Question: Is your business verified with Meta? */}
+            {/* Question: Is your business verified with Meta? (Dropdown select matching Screenshot 2) */}
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1 sm:mb-1.5">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5">
                 Is your business verified with Meta?
               </label>
               <div className="relative w-full">
                 <select
                   value={metaVerified}
                   onChange={(e) => setMetaVerified(e.target.value)}
-                  className="w-full px-3 py-1.5 sm:px-3.5 sm:py-2.5 text-xs sm:text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 appearance-none shadow-2xs cursor-pointer"
+                  className="w-full px-3.5 py-2.5 text-xs sm:text-sm rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white text-gray-900 appearance-none shadow-2xs cursor-pointer"
                 >
                   <option value="I don't know">I don't know</option>
                   <option value="Yes - Verified">Yes - Verified</option>
@@ -378,36 +372,34 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
                 </select>
                 <ChevronDown className="w-4 h-4 text-gray-400 absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none" />
               </div>
-              <p className="text-[10px] sm:text-[11px] text-gray-500 mt-1 leading-normal">
+              <p className="text-[11px] text-gray-500 mt-1.5 leading-normal">
                 Verified businesses receive priority features and higher messaging limits.
               </p>
             </div>
 
             {/* Question: Do you have a Facebook account, or a managed Meta account? */}
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5 sm:mb-2.5">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2.5">
                 Do you have a Facebook account, or a managed Meta account?
               </label>
               <div className="flex items-center gap-6">
-                <label 
+                <label
                   onClick={() => setHasFacebookAccount('yes')}
                   className="inline-flex items-center gap-2 cursor-pointer"
                 >
-                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border flex items-center justify-center transition-colors ${
-                    hasFacebookAccount === 'yes' ? 'border-[#00c25a] bg-[#00c25a]' : 'border-gray-300 bg-white'
-                  }`}>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${hasFacebookAccount === 'yes' ? 'border-[#00c25a] bg-[#00c25a]' : 'border-gray-300 bg-white'
+                    }`}>
                     {hasFacebookAccount === 'yes' && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                   </div>
                   <span className="text-xs sm:text-sm text-gray-800 font-medium">Yes</span>
                 </label>
 
-                <label 
+                <label
                   onClick={() => setHasFacebookAccount('no')}
                   className="inline-flex items-center gap-2 cursor-pointer"
                 >
-                  <div className={`w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full border flex items-center justify-center transition-colors ${
-                    hasFacebookAccount === 'no' ? 'border-[#00c25a] bg-[#00c25a]' : 'border-gray-300 bg-white'
-                  }`}>
+                  <div className={`w-4 h-4 rounded-full border flex items-center justify-center transition-colors ${hasFacebookAccount === 'no' ? 'border-[#00c25a] bg-[#00c25a]' : 'border-gray-300 bg-white'
+                    }`}>
                     {hasFacebookAccount === 'no' && <div className="w-1.5 h-1.5 rounded-full bg-white" />}
                   </div>
                   <span className="text-xs sm:text-sm text-gray-800 font-medium">No</span>
@@ -416,11 +408,11 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
             </div>
 
             {/* Continue Button */}
-            <div className="pt-2 sm:pt-4 flex justify-center">
+            <div className="pt-4 flex justify-center">
               <button
                 type="button"
                 onClick={handleStep1Continue}
-                className="w-full sm:w-auto px-8 sm:px-10 py-2.5 sm:py-3 rounded-xl bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-xs sm:text-base shadow-sm hover:shadow transition-all text-center min-w-[160px] sm:min-w-[180px] cursor-pointer"
+                className="px-10 py-3 rounded-xl bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-sm sm:text-base shadow-sm hover:shadow transition-all text-center min-w-[160px] sm:min-w-[180px]"
               >
                 Continue
               </button>
@@ -431,11 +423,11 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
 
         {/* STEP 2: What would you be using Aoneix for? */}
         {step === 2 && (
-          <div className="space-y-3.5 sm:space-y-6 animate-in fade-in slide-in-from-right-2 duration-300">
-            
+          <div className="space-y-8 animate-in fade-in slide-in-from-right-2 duration-300">
+
             {/* Header Titles matching Screenshot 3 & 4 */}
             <div>
-              <h1 className="text-xl sm:text-3xl lg:text-4xl font-extrabold text-gray-950 tracking-tight leading-tight mb-1">
+              <h1 className="text-2xl sm:text-4xl font-extrabold text-gray-950 tracking-tight leading-tight mb-2">
                 What would you be <br className="hidden sm:inline" />
                 <span className="text-[#00c25a]">using Aoneix for?</span>
               </h1>
@@ -444,80 +436,77 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
               </p>
             </div>
 
-            {/* 3 Main Purpose Cards: Support, Sales, Marketing (Multi-selectable) - 3 Column Grid on Mobile */}
-            <div className="grid grid-cols-3 gap-2 sm:gap-4">
-              
+            {/* 3 Main Purpose Cards: Support, Sales, Marketing (Multi-selectable) */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5 sm:gap-4">
+
               {/* 1. Support */}
-              <div 
+              <div
                 onClick={() => toggleUseCase('support')}
-                className={`cursor-pointer rounded-xl sm:rounded-2xl p-2 sm:p-4 flex flex-col justify-between transition-all relative border-2 ${
-                  selectedUseCases.includes('support')
+                className={`cursor-pointer rounded-2xl p-5 flex flex-col justify-between transition-all relative border-2 ${selectedUseCases.includes('support')
                     ? 'border-[#00c25a] bg-[#ecfdf5] shadow-xs'
                     : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50'
-                }`}
+                  }`}
               >
                 {selectedUseCases.includes('support') && (
-                  <div className="absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
-                    <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
+                  <div className="absolute top-3 right-3 w-4 h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                 )}
                 <div>
-                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-1.5 sm:mb-2.5 shadow-2xs">
-                    <Headphones className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-gray-700" />
+                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-3.5 shadow-2xs">
+                    <Headphones className="w-5 h-5 text-gray-700" />
                   </div>
-                  <h3 className="text-xs sm:text-base font-bold text-gray-900 mb-0.5 sm:mb-1">Support</h3>
-                  <p className="text-[10px] sm:text-xs text-gray-600 leading-tight sm:leading-relaxed line-clamp-2">
-                    Resolve queries with AI
+                  <h3 className="text-base font-bold text-gray-900 mb-1">Support</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Resolve customer queries with AI
                   </p>
                 </div>
               </div>
 
               {/* 2. Sales */}
-              <div 
+              <div
                 onClick={() => toggleUseCase('sales')}
-                className={`cursor-pointer rounded-xl sm:rounded-2xl p-2 sm:p-4 flex flex-col justify-between transition-all relative border-2 ${
-                  selectedUseCases.includes('sales')
+                className={`cursor-pointer rounded-2xl p-5 flex flex-col justify-between transition-all relative border-2 ${selectedUseCases.includes('sales')
                     ? 'border-[#00c25a] bg-[#ecfdf5] shadow-xs'
                     : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50'
-                }`}
+                  }`}
               >
                 {selectedUseCases.includes('sales') && (
-                  <div className="absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
-                    <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
+                  <div className="absolute top-3 right-3 w-4 h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                 )}
                 <div>
-                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-1.5 sm:mb-2.5 shadow-2xs">
-                    <TrendingUp className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-gray-700" />
+                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-3.5 shadow-2xs">
+                    <TrendingUp className="w-5 h-5 text-gray-700" />
                   </div>
-                  <h3 className="text-xs sm:text-base font-bold text-gray-900 mb-0.5 sm:mb-1">Sales</h3>
-                  <p className="text-[10px] sm:text-xs text-gray-600 leading-tight sm:leading-relaxed line-clamp-2">
-                    Qualify leads instantly
+                  <h3 className="text-base font-bold text-gray-900 mb-1">Sales</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Qualify leads instantly and follow up before they go cold
                   </p>
                 </div>
               </div>
 
               {/* 3. Marketing */}
-              <div 
+              <div
                 onClick={() => toggleUseCase('marketing')}
-                className={`cursor-pointer rounded-xl sm:rounded-2xl p-2 sm:p-4 flex flex-col justify-between transition-all relative border-2 ${
-                  selectedUseCases.includes('marketing')
+                className={`cursor-pointer rounded-2xl p-5 flex flex-col justify-between transition-all relative border-2 ${selectedUseCases.includes('marketing')
                     ? 'border-[#00c25a] bg-[#ecfdf5] shadow-xs'
                     : 'border-gray-200 bg-white hover:border-gray-300 hover:bg-gray-50/50'
-                }`}
+                  }`}
               >
                 {selectedUseCases.includes('marketing') && (
-                  <div className="absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
-                    <Check className="w-2 sm:w-2.5 h-2 sm:h-2.5 stroke-[3]" />
+                  <div className="absolute top-3 right-3 w-4 h-4 rounded-full bg-[#00c25a] text-white flex items-center justify-center">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
                 )}
                 <div>
-                  <div className="w-7 h-7 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-1.5 sm:mb-2.5 shadow-2xs">
-                    <Send className="w-3.5 h-3.5 sm:w-5 sm:h-5 text-gray-700" />
+                  <div className="w-10 h-10 rounded-xl bg-white border border-gray-100 flex items-center justify-center mb-3.5 shadow-2xs">
+                    <Send className="w-5 h-5 text-gray-700" />
                   </div>
-                  <h3 className="text-xs sm:text-base font-bold text-gray-900 mb-0.5 sm:mb-1">Marketing</h3>
-                  <p className="text-[10px] sm:text-xs text-gray-600 leading-tight sm:leading-relaxed line-clamp-2">
-                    Run campaigns that convert
+                  <h3 className="text-base font-bold text-gray-900 mb-1">Marketing</h3>
+                  <p className="text-xs text-gray-600 leading-relaxed">
+                    Run campaigns people actually reply to
                   </p>
                 </div>
               </div>
@@ -525,11 +514,11 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
             </div>
 
             {/* Question: How many people on your team will use Aoneix? */}
-            <div className="pt-1 sm:pt-2">
-              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5 sm:mb-2.5">
+            <div className="pt-2">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2.5">
                 How many people on your team will use Aoneix?
               </label>
-              <div className="flex flex-wrap gap-2 sm:gap-2.5">
+              <div className="flex flex-wrap gap-2.5">
                 {['1-3', '4-10', '11-25', '>25'].map((size) => {
                   const isSelected = teamSize === size;
                   return (
@@ -537,11 +526,10 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
                       key={size}
                       type="button"
                       onClick={() => setTeamSize(size)}
-                      className={`px-3 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs font-medium transition-all border shadow-2xs cursor-pointer ${
-                        isSelected
+                      className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all border shadow-2xs ${isSelected
                           ? 'bg-[#ecfdf5] border-[#00c25a] text-[#075e37] font-bold'
                           : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       {size}
                     </button>
@@ -552,10 +540,10 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
 
             {/* Question: How do you store customer data? */}
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5 sm:mb-2.5">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2.5">
                 How do you store customer data?
               </label>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2.5">
+              <div className="flex flex-wrap gap-2 sm:gap-2.5">
                 {dataStorageOptions.map((item) => {
                   const isSelected = dataStorage.includes(item);
                   return (
@@ -563,11 +551,10 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
                       key={item}
                       type="button"
                       onClick={() => toggleDataStorage(item)}
-                      className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all shadow-2xs border cursor-pointer ${
-                        isSelected
+                      className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all shadow-2xs border ${isSelected
                           ? 'bg-[#ecfdf5] border-[#00c25a] text-[#075e37] font-semibold'
                           : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       {item}
                     </button>
@@ -578,10 +565,10 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
 
             {/* Question: Which AI / Tools are you currently using in your company/business ? */}
             <div>
-              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-1.5 sm:mb-2.5">
+              <label className="block text-xs sm:text-sm font-semibold text-gray-800 mb-2.5">
                 Which AI / Tools are you currently using in your company/business ?
               </label>
-              <div className="flex flex-wrap gap-1.5 sm:gap-2.5">
+              <div className="flex flex-wrap gap-2 sm:gap-2.5">
                 {aiToolsOptions.map((tool) => {
                   const isSelected = aiTools.includes(tool);
                   return (
@@ -589,11 +576,10 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
                       key={tool}
                       type="button"
                       onClick={() => toggleAiTool(tool)}
-                      className={`px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-medium transition-all shadow-2xs border cursor-pointer ${
-                        isSelected
+                      className={`px-3.5 py-1.5 rounded-full text-xs font-medium transition-all shadow-2xs border ${isSelected
                           ? 'bg-[#ecfdf5] border-[#00c25a] text-[#075e37] font-semibold'
                           : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
+                        }`}
                     >
                       {tool}
                     </button>
@@ -603,16 +589,16 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
             </div>
 
             {/* Bottom Final Action: That's it - your Aoneix account is ready */}
-            <div className="pt-3 sm:pt-6 text-center space-y-2 sm:space-y-3">
+            <div className="pt-6 text-center space-y-3">
               <p className="text-xs sm:text-sm text-gray-500 font-medium">
                 That's it - your Aoneix account is ready
               </p>
-              
+
               <button
                 type="button"
                 onClick={handleFinalSubmit}
                 disabled={isProvisioning}
-                className="w-full sm:w-auto px-8 py-2.5 sm:py-3 rounded-xl bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-xs sm:text-base shadow-sm hover:shadow-md transition-all inline-flex items-center justify-center gap-2 min-w-[200px] cursor-pointer"
+                className="px-8 py-3 rounded-xl bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-sm sm:text-base shadow-sm hover:shadow-md transition-all inline-flex items-center justify-center gap-2 min-w-[200px]"
               >
                 {isProvisioning ? (
                   <span className="inline-flex items-center gap-2">
@@ -631,7 +617,7 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
       </main>
 
       {/* Outer Bottom Branding / Footer */}
-      <footer className="py-2.5 sm:py-4 border-t border-gray-100 text-center text-[10px] sm:text-[11px] text-gray-400">
+      <footer className="py-2 sm:py-3.5 border-t border-gray-100 text-center text-[10px] sm:text-[11px] text-gray-400 shrink-0">
         Aoneix Cloud Workspace Onboarding • Protected by 256-bit SSL encryption
       </footer>
 
@@ -639,7 +625,7 @@ export default function ClientOnboarding({ onBack, onComplete, showToast }) {
       {isProvisioning && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs animate-in fade-in duration-200">
           <div className="bg-white rounded-2xl shadow-2xl border border-gray-100 max-w-md w-full p-6 text-center space-y-4">
-            
+
             <div className="w-14 h-14 rounded-2xl bg-emerald-100 text-[#00c25a] flex items-center justify-center mx-auto animate-pulse">
               <Sparkles className="w-7 h-7" />
             </div>
