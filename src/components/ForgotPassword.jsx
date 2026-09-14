@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import AoneixLogo from './AoneixLogo';
-import { Mail, ArrowLeft, KeyRound, X, CheckCircle2 } from 'lucide-react';
+import { Mail, ArrowLeft, KeyRound, X, Check, Sparkles } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import orbReferenceImg from '../assets/orb_reference.png';
 
 export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, showToast }) {
   const [email, setEmail] = useState('');
@@ -193,13 +194,111 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                     >
                       Back to Login
                     </button>
+
+                    {/* Quick Demo Preview Button */}
+                    <div className="text-center pt-1">
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (!email) setEmail('httpsaaravjha@gmail.com');
+                          setIsSubmitted(true);
+                          try {
+                            confetti({ particleCount: 35, spread: 55, origin: { y: 0.5 } });
+                          } catch (_) {}
+                        }}
+                        className="inline-flex items-center gap-1 text-[11px] text-gray-400 hover:text-emerald-700 transition-colors cursor-pointer"
+                      >
+                        <Sparkles className="w-3 h-3 text-[#00c25a]" />
+                        <span>Preview "Check your email" view</span>
+                      </button>
+                    </div>
                   </form>
                 </>
               ) : (
-                /* Success Confirmation View */
-                <div className="text-center py-3 space-y-3">
-                  <div className="w-10 h-10 rounded-full bg-emerald-100 text-[#00c25a] flex items-center justify-center mx-auto animate-in zoom-in-50 duration-300">
-                    <CheckCircle2 className="w-6 h-6" />
+                /* Success Confirmation View with 3D Liquid Crystal Orb Checkmark */
+                <div className="text-center py-2 space-y-2.5">
+                  
+                  {/* 3D Liquid Crystal Orb with Checkmark Animation (Like loader, but status icon) */}
+                  <div className="relative flex flex-col items-center justify-center pt-1 pb-1">
+                    <div className="relative flex items-center justify-center animate-orb-float">
+                      {/* Radiant Ambient Aura (Radial gradient prevents square artifact on iOS Safari) */}
+                      <div 
+                        className="absolute w-20 h-20 rounded-full pointer-events-none animate-orb-glow"
+                        style={{
+                          background: 'radial-gradient(circle, rgba(0, 194, 90, 0.28) 0%, rgba(16, 185, 129, 0.16) 45%, rgba(132, 204, 22, 0.08) 65%, transparent 75%)',
+                          filter: 'blur(5px)'
+                        }}
+                      />
+
+                      {/* Glass Orb Shell (62px) */}
+                      <div 
+                        className="w-[62px] h-[62px] rounded-full relative overflow-hidden flex items-center justify-center border border-white/90 shadow-[0_10px_25px_-6px_rgba(0,194,90,0.32),0_4px_12px_-2px_rgba(14,165,233,0.18)]"
+                        style={{
+                          boxShadow: 'inset 0 0 14px rgba(255, 255, 255, 0.75), inset 0 1.5px 3px rgba(255, 255, 255, 0.95), inset 0 -3px 8px rgba(0, 0, 0, 0.12), inset 0 -1.5px 5px rgba(0, 194, 90, 0.4), 0 10px 25px -6px rgba(0, 194, 90, 0.32)',
+                          WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                          maskImage: 'radial-gradient(white, black)',
+                          WebkitBorderRadius: '9999px',
+                          borderRadius: '9999px',
+                          isolation: 'isolate',
+                          transform: 'translate3d(0, 0, 0)',
+                          WebkitTransform: 'translate3d(0, 0, 0)'
+                        }}
+                      >
+                        {/* 1. Base Spherical Gradient Layer */}
+                        <div className="absolute inset-0 bg-gradient-to-br from-[#e0f2fe] via-[#ecfdf5] to-[#f0fdf4] opacity-95 rounded-full pointer-events-none" />
+
+                        {/* 2. Deep Fluid Swirling Liquid Active Mesh */}
+                        <div 
+                          className="absolute inset-0 rounded-full filter blur-[7px] pointer-events-none opacity-95 overflow-hidden"
+                          style={{
+                            WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                            maskImage: 'radial-gradient(white, black)',
+                            borderRadius: '9999px'
+                          }}
+                        >
+                          {/* Oceanic Teal/Blue Swirling Blob */}
+                          <div 
+                            className="absolute top-[8%] left-[12%] w-[75%] h-[75%] bg-gradient-to-br from-[#0f766e] via-[#0284c7] to-[#042f2e] animate-orb-morph-1 animate-orb-spin"
+                            style={{ mixBlendMode: 'multiply' }}
+                          />
+                          {/* Vibrant Lime/Emerald Swirling Blob */}
+                          <div 
+                            className="absolute bottom-[5%] right-[8%] w-[85%] h-[85%] bg-gradient-to-tr from-[#84cc16] via-[#22c55e] to-[#10b981] animate-orb-morph-2 animate-orb-spin-reverse"
+                            style={{ mixBlendMode: 'normal' }}
+                          />
+                          {/* Chartreuse Core Accent Swirl */}
+                          <div 
+                            className="absolute top-[35%] left-[25%] w-[60%] h-[60%] bg-[#a3e635] rounded-full animate-orb-morph-1"
+                            style={{ mixBlendMode: 'color-dodge', opacity: 0.7 }}
+                          />
+                        </div>
+
+                        {/* 3. Reference Orb Texture Blend */}
+                        <div 
+                          className="absolute inset-0 rounded-full pointer-events-none animate-orb-spin-reverse"
+                          style={{
+                            backgroundImage: `url(${orbReferenceImg})`,
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            mixBlendMode: 'overlay',
+                            opacity: 0.75
+                          }}
+                        />
+
+                        {/* 4. Center White Checkmark Floating Inside the Crystal Lens */}
+                        <div className="relative z-10 flex items-center justify-center">
+                          <Check className="w-7 h-7 text-white stroke-[3.4] drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)] animate-in zoom-in-50 duration-300" />
+                        </div>
+
+                        {/* 5. Realistic Specular Highlights */}
+                        <div className="absolute top-0.5 left-1/2 -translate-x-1/2 w-[76%] h-[36%] rounded-[100%] bg-gradient-to-b from-white/90 via-white/35 to-transparent blur-[0.5px] pointer-events-none" />
+                        <div className="absolute top-1.5 left-2 w-1.5 h-1 bg-white rounded-full blur-[0.2px] rotate-[-30deg] pointer-events-none animate-orb-highlight" />
+                        <div className="absolute inset-0 rounded-full border border-white/70 pointer-events-none" />
+                      </div>
+                    </div>
+
+                    {/* Contact Shadow directly under Orb */}
+                    <div className="w-11 h-1 bg-emerald-950/15 rounded-[100%] blur-[2px] mt-1.5 pointer-events-none" />
                   </div>
 
                   <div>
@@ -207,7 +306,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                       Check your email
                     </h3>
                     <p className="text-xs text-gray-600 leading-relaxed max-w-xs mx-auto">
-                      We've sent a password reset link and verification instructions to <span className="font-semibold text-gray-900">{email}</span>.
+                      We've sent a password reset link and verification instructions to <span className="font-semibold text-gray-900">{email || 'httpsaaravjha@gmail.com'}</span>.
                     </p>
                   </div>
 
@@ -215,18 +314,28 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                     <button
                       type="button"
                       onClick={onOpenSignIn}
-                      className="w-full py-2 px-3 rounded-lg bg-[#00c25a] hover:bg-[#00b050] text-white font-bold text-xs sm:text-sm transition-all shadow-sm"
+                      className="w-full py-2 px-3 rounded-lg bg-[#00c25a] hover:bg-[#00b050] text-white font-bold text-xs sm:text-sm transition-all shadow-sm cursor-pointer"
                     >
                       Return to Login
                     </button>
 
-                    <button
-                      type="button"
-                      onClick={handleResend}
-                      className="text-xs text-emerald-700 hover:underline font-semibold"
-                    >
-                      Didn't receive email? Resend link
-                    </button>
+                    <div className="flex items-center justify-center gap-3 pt-0.5">
+                      <button
+                        type="button"
+                        onClick={handleResend}
+                        className="text-xs text-emerald-700 hover:underline font-semibold cursor-pointer"
+                      >
+                        Didn't receive email? Resend link
+                      </button>
+                      <span className="text-gray-300 text-xs">•</span>
+                      <button
+                        type="button"
+                        onClick={() => setIsSubmitted(false)}
+                        className="text-xs text-gray-500 hover:text-gray-800 hover:underline font-medium cursor-pointer"
+                      >
+                        Edit email
+                      </button>
+                    </div>
                   </div>
                 </div>
               )}
