@@ -86,16 +86,16 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
       </header>
 
       {/* Main Center Area: Centered Forgot Password Card */}
-      <main className="relative z-10 w-full max-w-5xl mx-auto px-3 sm:px-6 md:px-8 pt-1.5 pb-2.5 sm:py-6 flex-1 flex items-center justify-start sm:justify-center">
+      <main className="relative z-10 w-full max-w-5xl mx-auto px-3.5 sm:px-6 md:px-8 pt-3 sm:pt-6 pb-6 sm:pb-8 flex-1 flex flex-col items-center justify-start sm:justify-center">
 
         {/* Centered Forgot Password Card matching Theme & Screenshot */}
-        <div className="w-full max-w-[400px]">
+        <div className="w-full max-w-[420px] shrink-0">
           <div className="bg-white rounded-2xl border border-black shadow-2xl overflow-hidden relative">
 
             {/* Dark Green Gradient Header matching theme */}
-            <div className="bg-gradient-to-r from-[#075e37] to-[#0a5c36] px-4 py-2 sm:px-5 sm:py-3 text-white flex items-center justify-between">
+            <div className="bg-gradient-to-r from-[#075e37] to-[#0a5c36] px-5 py-3 sm:px-5 sm:py-3.5 text-white flex items-center justify-between">
               <div className="flex items-center space-x-2.5">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
+                <div className="w-8 h-8 rounded-lg bg-white/10 flex items-center justify-center border border-white/20 shrink-0">
                   <KeyRound className="w-4 h-4 text-[#86efac]" />
                 </div>
                 <div>
@@ -106,7 +106,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
               <button
                 type="button"
                 onClick={onOpenSignIn}
-                className="text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+                className="text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors cursor-pointer"
                 title="Back to login"
               >
                 <X className="w-4 h-4" />
@@ -114,7 +114,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
             </div>
 
             {/* Card Body */}
-            <div className="p-3 sm:p-4">
+            <div className="p-5 sm:p-5">
 
               {!isSubmitted ? (
                 <>
@@ -128,7 +128,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                     </p>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-2.5">
+                  <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-2.5">
 
                     {/* 1. Email Field with mail icon */}
                     <div>
@@ -137,7 +137,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                       </label>
                       <div className="relative">
                         <div className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none">
-                          <Mail className="w-3.5 h-3.5" />
+                          <Mail className="w-4 h-4" />
                         </div>
                         <input
                           type="email"
@@ -145,7 +145,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                           onChange={(e) => setEmail(e.target.value)}
                           placeholder="Enter your email"
                           required
-                          className="w-full pl-9 pr-3 py-1.5 text-xs sm:text-[13px] rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white placeholder-gray-400 text-gray-900 transition-all shadow-2xs"
+                          className="w-full pl-9 pr-3.5 py-2.5 text-[13.5px] sm:text-[13px] rounded-xl border border-gray-200 focus:outline-none focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 bg-white placeholder-gray-400 text-gray-900 transition-all shadow-2xs"
                         />
                       </div>
                     </div>
@@ -155,8 +155,8 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                       <label className="block text-xs font-semibold text-gray-800 mb-1">
                         Client ID <span className="text-gray-400 font-normal">(optional)</span>
                       </label>
-                      <div className="flex rounded-lg border border-gray-200 overflow-hidden shadow-2xs focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-600 transition-all">
-                        <span className="inline-flex items-center px-2.5 bg-gray-50 border-r border-gray-200 text-xs text-gray-500 select-none">
+                      <div className="flex rounded-xl border border-gray-200 overflow-hidden shadow-2xs focus-within:ring-2 focus-within:ring-emerald-500/20 focus-within:border-emerald-600 transition-all">
+                        <span className="inline-flex items-center px-2.5 py-2 bg-gray-50 border-r border-gray-200 text-xs text-gray-500 select-none">
                           live.aoneix.io/
                         </span>
                         <input
@@ -164,7 +164,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                           value={clientId}
                           onChange={(e) => setClientId(e.target.value)}
                           placeholder="Enter your Client ID e.g. 123456"
-                          className="flex-1 px-3 py-1.5 text-xs sm:text-[13px] bg-white placeholder-gray-400 text-gray-900 focus:outline-none"
+                          className="flex-1 px-3 py-2.5 text-[13.5px] sm:text-[13px] bg-white placeholder-gray-400 text-gray-900 focus:outline-none"
                         />
                       </div>
                     </div>
@@ -173,7 +173,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                     <button
                       type="submit"
                       disabled={isLoading}
-                      className="w-full py-2 px-3 rounded-lg bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-xs sm:text-sm shadow-sm transition-all text-center flex items-center justify-center gap-2 mt-1"
+                      className="w-full py-2.5 sm:py-2 px-4 rounded-xl bg-[#00c25a] hover:bg-[#00b050] active:scale-[0.99] text-white font-bold text-sm shadow-sm transition-all text-center flex items-center justify-center gap-2 mt-2 cursor-pointer"
                     >
                       {isLoading ? (
                         <span className="inline-flex items-center gap-1.5">
@@ -189,7 +189,7 @@ export default function ForgotPassword({ onBack, onOpenSignIn, onOpenSignUp, sho
                     <button
                       type="button"
                       onClick={onOpenSignIn}
-                      className="w-full py-1.5 px-3 rounded-lg border border-emerald-600 text-emerald-700 hover:bg-emerald-50/80 active:scale-[0.99] font-bold text-xs sm:text-sm transition-all text-center flex items-center justify-center cursor-pointer"
+                      className="w-full py-2.5 sm:py-2 px-4 rounded-xl border border-emerald-600 text-emerald-700 hover:bg-emerald-50/80 active:scale-[0.99] font-bold text-sm transition-all text-center flex items-center justify-center cursor-pointer mt-1"
                     >
                       Back to Login
                     </button>
