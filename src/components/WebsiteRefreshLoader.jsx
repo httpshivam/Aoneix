@@ -104,26 +104,45 @@ export default function WebsiteRefreshLoader({ onComplete, duration = 3000, mode
       <div className="relative z-10 flex flex-col items-center justify-center px-4 max-w-xs w-full">
         
         {/* =========================================================
-            Creative 3D Liquid Crystal Orb - Refined Micro Size (~64px - 80px)
+            Creative 3D Liquid Crystal Orb - Fixed Identical Size on Phone & Desktop
             ========================================================= */}
         <div className="relative flex items-center justify-center animate-orb-float">
           
-          {/* Ambient Orb Aura Glow behind the glass */}
-          <div className="absolute w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-tr from-emerald-500/20 via-teal-400/15 to-lime-400/25 blur-lg pointer-events-none animate-orb-glow" />
-
-          {/* Glass Orb Shell (Micro: ~64px on mobile, ~80px on desktop) */}
+          {/* Ambient Orb Aura Glow behind the glass (radial-gradient prevents square WebKit GPU artifacts on iOS) */}
           <div 
-            className="w-16 h-16 sm:w-20 sm:h-20 rounded-full relative overflow-hidden flex items-center justify-center shadow-[0_10px_25px_-6px_rgba(0,194,90,0.28),0_4px_12px_-2px_rgba(14,165,233,0.18)] border border-white/80 backdrop-blur-[2px]"
+            className="absolute w-20 h-20 rounded-full pointer-events-none animate-orb-glow"
             style={{
-              boxShadow: 'inset 0 0 14px rgba(255, 255, 255, 0.7), inset 0 1.5px 3px rgba(255, 255, 255, 0.95), inset 0 -4px 10px rgba(0, 0, 0, 0.12), inset 0 -1.5px 6px rgba(0, 194, 90, 0.35), 0 10px 25px -6px rgba(0, 194, 90, 0.28)'
+              background: 'radial-gradient(circle, rgba(0, 194, 90, 0.25) 0%, rgba(16, 185, 129, 0.15) 45%, rgba(132, 204, 22, 0.08) 65%, transparent 75%)',
+              filter: 'blur(5px)'
+            }}
+          />
+
+          {/* Glass Orb Shell (Strictly identical 68px on mobile & desktop, with WebKit mask to prevent square borders on Safari) */}
+          <div 
+            className="w-[68px] h-[68px] rounded-full relative overflow-hidden flex items-center justify-center shadow-[0_10px_25px_-6px_rgba(0,194,90,0.28),0_4px_12px_-2px_rgba(14,165,233,0.18)] border border-white/90"
+            style={{
+              boxShadow: 'inset 0 0 14px rgba(255, 255, 255, 0.7), inset 0 1.5px 3px rgba(255, 255, 255, 0.95), inset 0 -4px 10px rgba(0, 0, 0, 0.12), inset 0 -1.5px 6px rgba(0, 194, 90, 0.35), 0 10px 25px -6px rgba(0, 194, 90, 0.28)',
+              WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+              maskImage: 'radial-gradient(white, black)',
+              WebkitBorderRadius: '9999px',
+              borderRadius: '9999px',
+              isolation: 'isolate',
+              transform: 'translate3d(0, 0, 0)',
+              WebkitTransform: 'translate3d(0, 0, 0)'
             }}
           >
             {/* 1. Base Spherical Atmospheric Gradient */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#e0f2fe] via-[#ecfdf5] to-[#f0fdf4] opacity-90 rounded-full pointer-events-none" />
 
             {/* 2. Deep Fluid Swirling Liquid Layer (Active Mesh) */}
-            <div className="absolute inset-[-15%] rounded-full filter blur-[10px] sm:blur-[12px] pointer-events-none opacity-95">
-              
+            <div 
+              className="absolute inset-0 rounded-full filter blur-[8px] pointer-events-none opacity-95 overflow-hidden"
+              style={{
+                WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                maskImage: 'radial-gradient(white, black)',
+                borderRadius: '9999px'
+              }}
+            >
               {/* Oceanic Teal/Blue Swirling Blob */}
               <div 
                 className="absolute top-[8%] left-[12%] w-[75%] h-[75%] bg-gradient-to-br from-[#0f766e] via-[#0284c7] to-[#042f2e] animate-orb-morph-1 animate-orb-spin"
@@ -178,7 +197,7 @@ export default function WebsiteRefreshLoader({ onComplete, duration = 3000, mode
             <div className="absolute top-0.5 left-1/2 -translate-x-1/2 w-[76%] h-[36%] rounded-[100%] bg-gradient-to-b from-white/90 via-white/35 to-transparent blur-[0.5px] pointer-events-none" />
 
             {/* Pinpoint studio light specular glint */}
-            <div className="absolute top-2 left-2.5 sm:top-2.5 sm:left-3 w-1.5 h-1 bg-white rounded-full blur-[0.2px] rotate-[-30deg] pointer-events-none animate-orb-highlight" />
+            <div className="absolute top-2 left-2.5 w-1.5 h-1 bg-white rounded-full blur-[0.2px] rotate-[-30deg] pointer-events-none animate-orb-highlight" />
 
             {/* Refraction rim light border inside the lens */}
             <div className="absolute inset-0 rounded-full border border-white/70 pointer-events-none" />
@@ -186,28 +205,28 @@ export default function WebsiteRefreshLoader({ onComplete, duration = 3000, mode
         </div>
 
         {/* Soft Ambient Contact Shadow directly under Orb */}
-        <div className="w-10 sm:w-14 h-1 bg-emerald-950/15 rounded-[100%] blur-[2px] mt-1 pointer-events-none" />
+        <div className="w-12 h-1 bg-emerald-950/15 rounded-[100%] blur-[2px] mt-1 pointer-events-none" />
 
         {/* =========================================================
-            Loader Information & Progress Indicator (Tightly Spaced)
+            Loader Information & Progress Indicator (Strictly identical size on all screens)
             ========================================================= */}
         <div className="mt-1.5 flex flex-col items-center text-center space-y-2 w-full">
           
-          {/* Logo with gentle pulse */}
-          <div className="flex items-center justify-center transition-transform hover:scale-105">
-            <AoneixLogo className="h-4.5 sm:h-5" />
+          {/* Logo strictly locked to 20px height on phone and desktop */}
+          <div className="flex items-center justify-center transition-transform hover:scale-105 h-5">
+            <AoneixLogo className="h-5" style={{ height: '20px', maxHeight: '20px' }} />
           </div>
 
-          {/* High-Tech Progress Track */}
-          <div className="w-32 sm:w-40 h-1 bg-gray-200/90 rounded-full overflow-hidden shadow-inner">
+          {/* High-Tech Progress Track (identical 144px width on all screens) */}
+          <div className="w-36 h-1 bg-gray-200/90 rounded-full overflow-hidden shadow-inner">
             <div 
               className="h-full bg-gradient-to-r from-[#00c25a] via-[#10b981] to-[#075e37] rounded-full transition-all duration-100 ease-out shadow-[0_0_5px_rgba(0,194,90,0.5)]"
               style={{ width: `${progress}%` }}
             />
           </div>
 
-          {/* Dynamic Percentage & Status Message */}
-          <div className="flex items-center justify-between w-32 sm:w-40 text-[9px] sm:text-[10px] font-medium text-gray-500">
+          {/* Dynamic Percentage & Status Message (identical 144px width on all screens) */}
+          <div className="flex items-center justify-between w-36 text-[10px] font-medium text-gray-500">
             <span className="flex-1 truncate mr-1 text-left">{statusText}</span>
             <span className="font-mono font-bold text-gray-700 shrink-0">{progress}%</span>
           </div>

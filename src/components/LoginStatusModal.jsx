@@ -91,16 +91,18 @@ export default function LoginStatusModal({
           <div className="relative flex items-center justify-center animate-orb-float">
             {/* Radiant Ambient Aura */}
             <div 
-              className={`absolute w-20 h-20 rounded-full blur-xl pointer-events-none ${
-                isSuccess 
-                  ? 'bg-gradient-to-tr from-emerald-500/25 via-teal-400/20 to-lime-400/30 animate-orb-glow' 
-                  : 'bg-gradient-to-tr from-rose-600/30 via-red-500/25 to-amber-500/30 animate-orb-glow-crimson'
-              }`} 
+              className="absolute w-20 h-20 rounded-full pointer-events-none animate-orb-glow"
+              style={{
+                background: isSuccess
+                  ? 'radial-gradient(circle, rgba(0, 194, 90, 0.28) 0%, rgba(16, 185, 129, 0.18) 45%, rgba(132, 204, 22, 0.1) 65%, transparent 75%)'
+                  : 'radial-gradient(circle, rgba(225, 29, 72, 0.32) 0%, rgba(244, 63, 94, 0.2) 45%, rgba(249, 115, 22, 0.12) 65%, transparent 75%)',
+                filter: 'blur(5px)'
+              }}
             />
 
             {/* Glass Orb Shell (72px) */}
             <div 
-              className={`w-[72px] h-[72px] rounded-full relative overflow-hidden flex items-center justify-center border border-white/90 backdrop-blur-[2px] ${
+              className={`w-[72px] h-[72px] rounded-full relative overflow-hidden flex items-center justify-center border border-white/90 ${
                 isSuccess
                   ? 'shadow-[0_12px_28px_-6px_rgba(0,194,90,0.38),0_4px_12px_-2px_rgba(14,165,233,0.22)]'
                   : 'shadow-[0_12px_28px_-6px_rgba(225,29,72,0.42),0_4px_12px_-2px_rgba(249,115,22,0.25)]'
@@ -108,7 +110,14 @@ export default function LoginStatusModal({
               style={{
                 boxShadow: isSuccess
                   ? 'inset 0 0 16px rgba(255, 255, 255, 0.75), inset 0 2px 4px rgba(255, 255, 255, 0.95), inset 0 -4px 10px rgba(0, 0, 0, 0.12), inset 0 -2px 6px rgba(0, 194, 90, 0.4), 0 12px 28px -6px rgba(0, 194, 90, 0.38)'
-                  : 'inset 0 0 16px rgba(255, 255, 255, 0.75), inset 0 2px 4px rgba(255, 255, 255, 0.95), inset 0 -4px 10px rgba(0, 0, 0, 0.15), inset 0 -2px 6px rgba(225, 29, 72, 0.45), 0 12px 28px -6px rgba(225, 29, 72, 0.42)'
+                  : 'inset 0 0 16px rgba(255, 255, 255, 0.75), inset 0 2px 4px rgba(255, 255, 255, 0.95), inset 0 -4px 10px rgba(0, 0, 0, 0.15), inset 0 -2px 6px rgba(225, 29, 72, 0.45), 0 12px 28px -6px rgba(225, 29, 72, 0.42)',
+                WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                maskImage: 'radial-gradient(white, black)',
+                WebkitBorderRadius: '9999px',
+                borderRadius: '9999px',
+                isolation: 'isolate',
+                transform: 'translate3d(0, 0, 0)',
+                WebkitTransform: 'translate3d(0, 0, 0)'
               }}
             >
               {/* 1. Base Spherical Gradient Layer */}
@@ -121,7 +130,14 @@ export default function LoginStatusModal({
               />
 
               {/* 2. Deep Fluid Swirling Liquid Active Mesh (morphing blobs) */}
-              <div className="absolute inset-[-15%] rounded-full filter blur-[10px] pointer-events-none opacity-95">
+              <div 
+                className="absolute inset-0 rounded-full filter blur-[8px] pointer-events-none opacity-95 overflow-hidden"
+                style={{
+                  WebkitMaskImage: '-webkit-radial-gradient(white, black)',
+                  maskImage: 'radial-gradient(white, black)',
+                  borderRadius: '9999px'
+                }}
+              >
                 {isSuccess ? (
                   <>
                     {/* Oceanic Emerald/Teal Blob */}
