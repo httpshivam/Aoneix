@@ -1,32 +1,17 @@
 {
-  "name": "aionex",
+  "name": "aionex-workspace",
   "private": true,
-  "version": "0.0.0",
-  "homepage": "https://httpshivam.github.io/Aoneix",
-  "type": "module",
+  "workspaces": [
+    "website",
+    "dashboard"
+  ],
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "lint": "oxlint",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
-  },
-  "dependencies": {
-    "canvas-confetti": "^1.9.4",
-    "lucide-react": "^1.44.0",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
-  },
-  "devDependencies": {
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
-    "autoprefixer": "^10.5.6",
-    "gh-pages": "^6.3.0",
-    "oxlint": "^1.81.0",
-    "postcss": "^8.5.28",
-    "tailwindcss": "^3.4.19",
-    "vite": "^8.3.0"
+    "dev": "npm run dev --workspace=@aionex/website",
+    "dev:website": "npm run dev --workspace=@aionex/website",
+    "dev:dashboard": "npm run dev --workspace=@aionex/dashboard",
+    "dev:all": "npx concurrently -n \"WEBSITE,DASHBOARD\" -c \"cyan,green\" \"npm run dev:website\" \"npm run dev:dashboard\"",
+    "build": "npm run build --workspaces",
+    "build:website": "npm run build --workspace=@aionex/website",
+    "build:dashboard": "npm run build --workspace=@aionex/dashboard"
   }
 }
