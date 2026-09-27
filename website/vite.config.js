@@ -7,4 +7,8 @@ export default defineConfig(({ command }) => ({
   // In production build, use './' so it works on GitHub Pages, Netlify, and all subpaths!
   base: command === 'serve' ? '/' : './',
   plugins: [react()],
+  server: {
+    port: 3002,
+    allowedHosts: true,
+  },
 }))
